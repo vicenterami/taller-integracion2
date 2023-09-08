@@ -12,7 +12,7 @@ function Welcome() {
     <div>
       <h1 style={estiloBienvenida}>Bienvenido a nuestro proyecto</h1>
       <Link to="/iniciar-sesion">
-        <button>Iniciar SesiÃ³n</button>
+        <button>Iniciar Sesión</button>
       </Link>
       <Link to="/registrarse">
         <button>Registrarse</button>
