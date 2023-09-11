@@ -9,18 +9,41 @@ function IniciarSesion() {
         {/* Aquí va el nabvar */}
       </div>
 
-      <div className="container-fluid vh-100 d-flex justify-content-center align-items-center">
+      <div className="container-fluid vh-100 d-flex justify-content-center align-items-center ">
         <div
-          className="bg-info p-5"
+          className=" bg-primary position-absolute "
           style={{
-            borderRadius: "20px",
+            minWidth: "59%",
+            minHeight: "62%",
+            marginBottom: "3%",
+            marginLeft: "2.6%",
+            WebkitBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
+            MozBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
+            boxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
+          }}
+        ></div>
+        <div
+          className=" bg-primary position-absolute "
+          style={{
+            minWidth: "59%",
+            minHeight: "62%",
+            marginTop: "3%",
+            marginRight: "2.6%",
+            WebkitBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
+            MozBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
+            boxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
+          }}
+        ></div>
+        <div
+          className="bg-primary border p-5 position-absolute"
+          style={{
             WebkitBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
             MozBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
             boxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
           }}
         >
-          <div className="row">
-            <div className="col-lg-6   d-flex flex-column justify-content-center align-items-center position-relative">
+          <div className="row  ">
+            <div className="col-lg-6 d-flex flex-column justify-content-center align-items-center position-relative">
               <div>
                 <img
                   src={logo}
