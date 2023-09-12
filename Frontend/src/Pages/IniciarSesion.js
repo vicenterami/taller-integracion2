@@ -5,8 +5,8 @@ import logo from "../Images/logo.png";
 function IniciarSesion() {
   return (
     <div>
-      <div className="bg-info" style={{ width: "100%" }}>
-        {/* Aquí va el nabvar */}
+      <div className="bg-primary" style={{ width: "100%" }}>
+        {/* Aquí va el nabvar    */}
       </div>
 
       <div className="container-fluid vh-100 d-flex justify-content-center align-items-center ">
