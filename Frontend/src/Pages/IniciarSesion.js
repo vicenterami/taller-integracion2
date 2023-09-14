@@ -1,8 +1,36 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React from "react";
+import React, { useState } from "react";
 import logo from "../Images/logo.png";
+import { useNavigate } from "react-router-dom";
 
-function IniciarSesion() {
+function IniciarSesion({ navigation }) {
+  const navigate = useNavigate();
+  const [rut, setRut] = useState("");
+  const [contrasena, setPassword] = useState("");
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("http://192.168.4.22:3000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ rut, contrasena }),
+      });
+
+      if (response.status === 200) {
+        const data = await response.json(); // Parsea la respuesta JSON
+        const rutUsuario = data.rut;
+        navigate("/home", { state: { rut: rutUsuario } });
+        console.log(data);
+      } else {
+        console.error("Error en el inicio de sesión");
+      }
+    } catch (error) {
+      console.error("Error en el inicio de sesión:", error);
+    }
+  };
   return (
     <div>
       <div className="bg-primary" style={{ width: "100%" }}>
@@ -61,27 +89,31 @@ function IniciarSesion() {
             </div>
             <div className="col-lg-6  d-flex flex-column justify-content-center align-items-center position-relative">
               <h2 className="display-4">Iniciar Sesión</h2>
-              <form>
+              <form onSubmit={handleLogin}>
                 <div className="mb-4">
-                  <label htmlFor="correo" className="form-label fs-4">
-                    Correo Electrónico
+                  <label htmlFor="rut" className="form-label fs-4">
+                    Rut
                   </label>
                   <input
-                    type="email"
+                    type="rut"
                     className="form-control form-control-lg p-3"
-                    id="correo"
-                    placeholder="nombre@ejemplo.com"
+                    id="rut"
+                    placeholder="12123123-1"
+                    value={rut}
+                    onChange={(e) => setRut(e.target.value)}
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="contraseña" className="form-label fs-4">
+                  <label htmlFor="contrasena" className="form-label fs-4">
                     Contraseña
                   </label>
                   <input
                     type="password"
                     className="form-control form-control-lg p-3"
-                    id="contraseña"
+                    id="password"
                     placeholder="Contraseña"
+                    value={contrasena}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div className="mb-4 form-check">

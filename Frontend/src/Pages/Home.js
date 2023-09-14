@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
 import axios from "axios";
 
 function Home() {
   const [userData, setUserData] = useState(""); // Estado para almacenar los datos del usuario
+  const location = useLocation();
+  const rut = location.state.rut;
 
   useEffect(() => {
     axios
-      .get(`http://192.168.4.22:3000/api/User/Aa`)
+      .get(`http://192.168.4.22:3000/api/User/${rut}`)
       .then((response) => {
         // Almacena los datos del usuario en el estado
         setUserData(response.data.user);
@@ -14,7 +18,7 @@ function Home() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [rut]);
 
   return (
     <div className="container mt-5">
