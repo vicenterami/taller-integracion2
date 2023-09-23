@@ -4,16 +4,16 @@ const User = require("../models/User");
 
 router.post("/register", async (req, res) => {
   try {
-    const { nombre, rut, correo } = req.body;
-    const user = new User({ nombre, rut, correo });
+    const { nombre, rut, correo, telefono, contrasena } = req.body;
+    const user = new User({ nombre, rut, correo, telefono, contrasena });
 
     // Guarda el usuario en la base de datos
     await user.save();
 
-    res.status(201).json({ message: "Usuario registrado con éxito" });
+    res.status(201).json({ message: "Usuario registrado con éxito", user });
   } catch (error) {
+    res.status(500).json({ message: "Error al registrar usuario", error });
     console.error(error);
-    res.status(500).json({ message: "Error al registrar usuario" });
   }
 });
 

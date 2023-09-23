@@ -16,8 +16,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  telefono: String,
-  contrasena: String,
+  telefono: {
+    type: String,
+  },
+  contrasena: {
+    type: String,
+  }
 });
 
 module.exports = mongoose.model("Usuario", userSchema); // Asegúrate de que el nombre del modelo coincida con el de la colección en MongoDB

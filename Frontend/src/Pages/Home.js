@@ -10,7 +10,7 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get(`http://192.168.4.22:3000/api/User/${rut}`)
+      .get(`http://192.168.1.12:3000/api/User/${rut}`)
       .then((response) => {
         // Almacena los datos del usuario en el estado
         setUserData(response.data.user);
