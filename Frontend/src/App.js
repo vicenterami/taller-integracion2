@@ -5,6 +5,8 @@ import Welcome from "./Pages/Welcome";
 import IniciarSesion from "./Pages/IniciarSesion";
 import Registrarse from "./Pages/Register";
 import Home from "./Pages/Home"; // Importa el componente Home
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
