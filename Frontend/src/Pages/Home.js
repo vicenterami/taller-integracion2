@@ -7,6 +7,50 @@ function Home() {
   const [userData, setUserData] = useState(""); // Estado para almacenar los datos del usuario
   const location = useLocation();
   const rut = location.state.rut;
+  const [selectedPage, setSelectedPage] = useState('inicio');
+
+  const handlePageChange = (page) => {
+    setSelectedPage(page);
+  };
+
+  return (
+    <div className="Home" 
+    list-style= "none"
+    padding= "0"
+    display="flex"
+    justify-content= "center">
+      <header>
+        <nav>
+          <ul id="Home">
+            <li margin-right= "20px">
+              <button background-color= "transparent" border= "none" color= "#fff" font-size= "16px" cursor= "pointer" padding= "10px 20px" transition= "background-color 0.3s ease" 
+              onClick={() => handlePageChange('inicio')}>Inicio</button>
+            </li>
+            <li margin-right= "20px">
+              <button background-color= "transparent" border= "none" color= "#fff" font-size= "16px" cursor= "pointer" padding= "10px 20px" transition= "background-color 0.3s ease"
+              onClick={() => handlePageChange('Horas medicas')}>Horas medicas</button>
+            </li>
+            <li margin-right= "20px">
+              <button background-color= "transparent" border= "none" color= "#fff" font-size= "16px" cursor= "pointer" padding= "10px 20px" transition= "background-color 0.3s ease"
+              onClick={() => handlePageChange('Medicamentos')}>Medicamentos</button>
+            </li>
+            <li margin-right= "20px">
+              <button background-color= "transparent" border= "none" color= "#fff" font-size= "16px" cursor= "pointer" padding= "10px 20px" transition= "background-color 0.3s ease"
+              onClick={() => handlePageChange('Evolucion medica')}>Evolucion medica</button>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <div id="contenidoHome" margin="20px" font-size="18px">
+        {/* Mostrar contenido según la página seleccionada */}
+        {selectedPage === 'inicio' && <p>Contenido de Inicio</p>}
+        {selectedPage === 'Horas medicas' && <p>Contenido de Horas medicas</p>}
+        {selectedPage === 'Medicamentos' && <p>Contenido de Medicamentos</p>}
+        {selectedPage === 'Evolucion medica' && <p>Contenido de Evolucion medica</p>}
+      </div>
+    </div>
+  );
 
   useEffect(() => {
     axios
