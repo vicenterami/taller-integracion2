@@ -2,10 +2,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import logo from "../Images/logo.png";
 import { useNavigate } from "react-router-dom";
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 
 function IniciarSesion({ navigation }) {
   const navigate = useNavigate();
@@ -38,29 +34,7 @@ function IniciarSesion({ navigation }) {
   return (
     <div>
       <div className="bg-primary" style={{ width: "100%" }}>
-        {
-        /* Aquí va el nabvar    */
-        export default function MenuPopupState() {
-          return (
-            <PopupState variant="popover" popupId="demo-popup-menu">
-              {(popupState) => (
-                <React.Fragment>
-                  <Button variant="contained" color="primary" {...bindTrigger(popupState)}>
-                    Menu
-                  </Button>
-                  <Menu {...bindMenu(popupState)}>
-                    <MenuItem onClick={popupState.close}>Perfil</MenuItem>
-                    <MenuItem onClick={popupState.close}>Conseguir hora </MenuItem>
-                    <MenuItem onClick={popupState.close}>Licencias</MenuItem>
-                    <MenuItem onClick={popupState.close}>Medicos</MenuItem>
-                    <MenuItem onClick={popupState.close}>Otro</MenuItem>
-                  </Menu>
-                </React.Fragment>
-              )}
-            </PopupState>
-          );
-        }
-        }
+        {/* Aquí va el nabvar    */}
       </div>
 
       <div className="container-fluid vh-100 d-flex justify-content-center align-items-center ">
