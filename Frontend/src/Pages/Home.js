@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import Citas from "./Citas";
+
 
 import axios from "axios";
 
@@ -42,7 +44,7 @@ function Home() {
       </header>
 
     </div>
-    <div id="contenidoHome" margin="20px" font-size="18px">
+    <div id="contenidoHome" margin="20px" fontSize="18px">
 
     {userData ? (
         <p>
@@ -58,7 +60,12 @@ function Home() {
 
         {/* Mostrar contenido según la página seleccionada */}
         {selectedPage === 'inicio' && <p>Contenido de Inicio</p>}
-        {selectedPage === 'Horas medicas' && <p>Contenido de Horas medicas</p>}
+        {selectedPage === 'Horas medicas' && 
+          <div>
+            <p>Contenido de Horas medicas</p>
+            <Citas/>
+          </div>
+        }
         {selectedPage === 'Medicamentos' && <p>Contenido de Medicamentos</p>}
         {selectedPage === 'Evolucion medica' && <p>Contenido de Evolucion medica</p>}
         
