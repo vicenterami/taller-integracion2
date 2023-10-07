@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../Images/logo.png";
+import * as yup from 'yup'
+import { Validations } from '../ValidaciónDatos/DataValidation';
 
 function Register() {
   const navigate = useNavigate();
@@ -20,6 +22,13 @@ function Register() {
       'contrasena': contrasena
     }
     try {
+      await Validations.validate({
+        nombre,
+        rut,
+        correo,
+        telefono,
+        contrasena,
+      });
       const response = await fetch("http://45.236.129.38:3000/api/register", {
         method: "POST",
         headers: {
@@ -27,25 +36,22 @@ function Register() {
         },
         body: JSON.stringify(parametros),
       });
+      const data = await response.json(); // Parsea la respuesta JSON
       if (response.status === 201) {
-        const data = await response.json(); // Parsea la respuesta JSON
-        const rutUsuario = data.rut;
-        //navigate("/home", { state: { rut: rutUsuario } });
+        navigate("/");
         console.log(data);
         alert("Usuario registrado exitosamente");
-
-      } else if (response.status === 500) {
-        const err = await response.json();
-        console.log(err)
-        if (err.error.code === 11000) {
-          alert('el rut ya esta registrado')
-        }
+      }  else if({ state: { rut: data.rut } }){
+          alert('el RUT ya esta registrado')
       } else {
         alert('ocurrio un error')
       }
     } catch (error) {
-      console.error("Error al registrar usuariooo:", error);
-      
+      if(error instanceof yup.ValidationError) {
+        alert(error.message);
+      } else {
+        console.error("Error al registrar usuario:", error);
+      }
     }
   };
   return (
@@ -92,7 +98,7 @@ function Register() {
                 ></input>
               </div>
               <div className="form-group">
-                <label>Telefono</label>
+                <label>Teléfono</label>
                 <input 
                 type="number" 
                 placeholder="9-12345678"
@@ -113,14 +119,14 @@ function Register() {
                 className="form-control"
                 ></input>
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label>Confirmar contraseña</label>
                 <input 
                 type="password" 
                 placeholder="Confirmar contraseña..."
                 className="form-control"
                 ></input>
-              </div>
+              </div> */}
               <button type="submit" className="btn btn-primary mt-3"> 
                 Registrarse
               </button>
