@@ -14,7 +14,7 @@ export const Validations = yup.object().shape({
     .required('El nombre es obligatorio'),
     rut: yup
     .string()
-    //.matches(/^\d{1,2}\.\d{3}\.\d{3}-(\d|k|K)$/, 'RUT no válido, el formato debe ser: xx.xxx.xxx-x')
+    .matches(/^\d{1,2}\.\d{3}\.\d{3}-(\d|k|K)$/, 'RUT no válido, el formato debe ser: xx.xxx.xxx-x')
     .test('RUT no válido', RutValidation)
     .required('El RUT es obligatorio'),
     correo: yup
