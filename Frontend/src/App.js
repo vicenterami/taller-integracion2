@@ -21,7 +21,7 @@ function App() {
             <Route path="/home" element={<Home />} />{" "}
             <Route path="/perfil" element={<Perfil />} />{" "}
           </Routes>
-          {/* <Citas/> */}
+          <Citas/>
         </header>
       </div>
     </Router>
