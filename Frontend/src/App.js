@@ -5,6 +5,7 @@ import Welcome from "./Pages/Welcome";
 import IniciarSesion from "./Pages/IniciarSesion";
 import Registrarse from "./Pages/Register";
 import Home from "./Pages/Home"; // Importa el componente Home
+import Perfil from "./Pages/Perfil";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Citas from "./Pages/Citas";
 
@@ -18,8 +19,9 @@ function App() {
             <Route path="/iniciar-sesion" element={<IniciarSesion />} />
             <Route path="/registrarse" element={<Registrarse />} />
             <Route path="/home" element={<Home />} />{" "}
+            <Route path="/perfil" element={<Perfil />} />{" "}
           </Routes>
-          <Citas/>
+          {/* <Citas/> */}
         </header>
       </div>
     </Router>

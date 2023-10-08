@@ -1,15 +1,20 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import logo from "../Images/logo.png";
+import { useAuth } from "../AuthContext";
+
 import { useNavigate } from "react-router-dom";
 
 function IniciarSesion({ navigation }) {
+  const { login } = useAuth();  // Obtén la función login del contexto
   const navigate = useNavigate();
   const [rut, setRut] = useState("");
+  
   const [contrasena, setPassword] = useState("");
 
   const handleLogin = async (event) => {
     event.preventDefault();
+
     try {
       const response = await fetch("http://45.236.129.38:3000/api/login", {
         method: "POST",
@@ -20,10 +25,12 @@ function IniciarSesion({ navigation }) {
       });
 
       if (response.status === 200) {
-        const data = await response.json(); // Parsea la respuesta JSON
-        const rutUsuario = data.rut;
-        navigate("/home", { state: { rut: rutUsuario } });
+        const data = await response.json();
         console.log(data);
+        login(data);
+        localStorage.setItem("token", data.token);
+
+        navigate("/home");
       } else {
         console.error("Error en el inicio de sesión");
       }
