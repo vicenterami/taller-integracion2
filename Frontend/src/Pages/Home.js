@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Citas from "./Citas"
 
 
 function Home() {
@@ -23,7 +24,7 @@ function Home() {
   useEffect(() => {
     
     // Realizas una solicitud a la API para obtener datos del usuario
-    axios.get(`http://192.168.4.22:3000/api/User/${userData.rut}`)
+    axios.get(`http://45.236.129.38:3000/api/User/${userData.rut}`)
       .then((response) => {
         // Almacena los datos del usuario en el estado
         setData(response.data.user);
@@ -66,7 +67,12 @@ function Home() {
 
         {/* Mostrar contenido según la página seleccionada */}
         {selectedPage === 'inicio' && <p>Contenido de Inicio</p>}
-        {selectedPage === 'Horas medicas' && <p>Contenido de Horas medicas</p>}
+        {selectedPage === 'Horas medicas' && 
+          <div>
+            <p>Contenido de Horas medicas</p>
+            <Citas/>
+          </div>
+        }
         {selectedPage === 'Medicamentos' && <p>Contenido de Medicamentos</p>}
         {selectedPage === 'Evolucion medica' && <p>Contenido de Evolucion medica</p>}
       

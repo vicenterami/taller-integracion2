@@ -7,7 +7,6 @@ import Registrarse from "./Pages/Register";
 import Home from "./Pages/Home"; // Importa el componente Home
 import Perfil from "./Pages/Perfil";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Citas from "./Pages/Citas";
 
 function App() {
   return (
@@ -21,7 +20,6 @@ function App() {
             <Route path="/home" element={<Home />} />{" "}
             <Route path="/perfil" element={<Perfil />} />{" "}
           </Routes>
-          <Citas/>
         </header>
       </div>
     </Router>

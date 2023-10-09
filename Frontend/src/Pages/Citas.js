@@ -22,23 +22,31 @@ const Citas = () => {
         }
         citasDelPaciente();
     },[])
-    //console.log(cita)
 
     //funcion que mapea las citas almecenadas en la base de datos 
-    const agendas = cita.map((item) => 
-        <div key={item._id}>
-            <div className='row'>Doctor: {item.doctor}</div>
-            <div className='row'>Especialidad: {item.especialidad}</div>
-            <div className='row'>Fecha: {item.fecha}</div>
-        </div>
+    const agendas = cita.map((item, index) => 
+        <tr key={item._id}>
+            <th scope='row'>{index+1}</th>
+            <th scope='row'>{item.doctor}</th>
+            <th scope='row'>{item.especialidad}</th>
+            <th scope='row'>{item.fecha}</th>
+        </tr>
     )
 
   return (
-    <div className='container'>
-        <div className='col align-items-center'>
+    <table className='table table-dark table-hover'>
+        <thead>
+            <tr>
+                <th scope='col'>#</th>
+                <th scope='col'>Doctor</th>
+                <th scope='col'>Especialidad</th>
+                <th scope='col'>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
             {agendas}
-        </div>
-    </div>
+        </tbody>
+    </table>
   )
 }
 
