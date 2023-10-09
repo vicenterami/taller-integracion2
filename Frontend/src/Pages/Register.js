@@ -36,11 +36,13 @@ function Register() {
         },
         body: JSON.stringify(parametros),
       });
-      const data = await response.json(); // Parsea la respuesta JSON
+      
       if (response.status === 201) {
-        navigate("/");
+        const data = await response.json();
+        const rutUsuario = data.rut;
         console.log(data);
         alert("Usuario registrado exitosamente");
+        navigate("/IniciarSesion");
       }  else if({ state: { rut: data.rut } }){
           alert('el RUT ya esta registrado')
       } else {
