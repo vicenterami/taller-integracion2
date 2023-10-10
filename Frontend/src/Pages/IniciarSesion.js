@@ -12,6 +12,9 @@ function IniciarSesion({ navigation }) {
   
   const [contrasena, setPassword] = useState("");
 
+  const [errorMessage, setErrorMessage] = useState(""); // Nuevo estado para mensaje de error
+
+
   const handleLogin = async (event) => {
     event.preventDefault();
 
@@ -31,8 +34,8 @@ function IniciarSesion({ navigation }) {
         localStorage.setItem("token", data.token);
 
         navigate("/home");
-      } else {
-        console.error("Error en el inicio de sesión");
+      } else if (response.status === 401) {
+        setErrorMessage('Usuario o contraseña incorrecto');
       }
     } catch (error) {
       console.error("Error en el inicio de sesión:", error);
@@ -140,6 +143,11 @@ function IniciarSesion({ navigation }) {
                 <button type="submit" className="btn btn-primary btn-lg fs-4">
                   Iniciar Sesión
                 </button>
+                {errorMessage && ( // Muestra el mensaje de error solo si hay un mensaje
+                  <div className="alert alert-danger mt-3" role="alert">
+                    {errorMessage}
+                  </div>
+                )}
               </form>
             </div>
           </div>

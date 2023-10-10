@@ -23,12 +23,12 @@ router.post('/login', async (req, res) => {
   try {
     const { rut, contrasena } = req.body;
     const user = await User.findOne({ rut, contrasena });
-    if (user) {
-      res.status(200).json({ message: 'Inicio de sesión exitoso', rut: user.rut ,nombre: user.nombre });
 
-    } else {
-      res.status(401).json({ message: 'Credenciales inválidas' });
+    if (!user) {
+      return res.status(401).json({ message: 'Usuario o contraseña inconrrecto' });
     }
+
+    res.status(200).json({ message: 'Inicio de sesión exitoso', rut: user.rut ,nombre: user.nombre });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error en el inicio de sesión' });
