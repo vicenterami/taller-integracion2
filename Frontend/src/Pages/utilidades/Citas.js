@@ -34,6 +34,7 @@ const Citas = () => {
     )
 
   return (
+    
     <table className='table table-dark table-hover'>
         <thead>
             <tr>
