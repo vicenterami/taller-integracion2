@@ -136,7 +136,8 @@ router.get('/evoluciones/:rutt', async (req, res) => {
     const evolucionesDelPaciente = await Evolucion.find({ pacienteRut: rutPaciente });
 
     if (evolucionesDelPaciente.length === 0) {
-      res.status(200).json({ message: 'No se encontraron evoluciones médicas asociadas a este paciente' });
+      const mensaje = ['No se encontraron evoluciones médicas asociadas a este paciente']
+      res.status(200).json({ message: mensaje });
     } else {
       res.status(200).json({ evoluciones: evolucionesDelPaciente });
     }

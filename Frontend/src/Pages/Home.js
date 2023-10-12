@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Citas from "./Citas"
-
+import Citas from "./utilidades/Citas"
+import Seguimiento from "./utilidades/Seguimiento"
 
 function Home() {
   const navigate = useNavigate();
@@ -86,7 +86,11 @@ function Home() {
           </div>
         }
         {selectedPage === 'Medicamentos' && <p>Contenido de Medicamentos</p>}
-        {selectedPage === 'Evolucion medica' && <p>Contenido de Evolucion medica</p>}
+        {selectedPage === 'Evolucion medica' && 
+        <p>
+          Contenido de Evolucion medica
+          <Seguimiento/>
+        </p>}
       
       </div>
     </>
