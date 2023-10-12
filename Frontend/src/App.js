@@ -7,6 +7,7 @@ import Registrarse from "./Pages/Register";
 import Home from "./Pages/Home"; // Importa el componente Home
 import Perfil from "./Pages/Perfil";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Reservar from "./Pages/Reservar";
 
 function App() {
   return (
@@ -17,8 +18,9 @@ function App() {
             <Route path="/" element={<Welcome />} />
             <Route path="/IniciarSesion" element={<IniciarSesion />} />
             <Route path="/registrarse" element={<Registrarse />} />
-            <Route path="/home" element={<Home />} />{" "}
-            <Route path="/perfil" element={<Perfil />} />{" "}
+            <Route path="/home" element={<Home />} />
+            <Route path="/perfil" element={<Perfil />} />
+            <Route path="/reservar" element={<Reservar />} />
           </Routes>
         </header>
       </div>

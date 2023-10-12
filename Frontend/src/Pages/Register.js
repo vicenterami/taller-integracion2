@@ -36,7 +36,8 @@ function Register() {
         },
         body: JSON.stringify(parametros),
       });
-      
+      const data = await response.json();
+
       if (response.status === 201) {
         const data = await response.json();
         const rutUsuario = data.rut;

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useAuth } from '../AuthContext'; // Replace with your actual auth library
-import logo from '../Images/logo.png'; // Replace with the actual path to your logo
-
+import { useAuth } from '../AuthContext'; 
+import logo from '../Images/logo.png'; 
 function Perfil() {
   const { userData } = useAuth();
   const [data, setData] = useState("");
