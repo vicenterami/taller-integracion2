@@ -56,7 +56,7 @@ function Welcome() {
         <div style={box}>
           <div style={botonbox}>
             <p>¿Tienes una cuenta?</p>
-          <Link to="/iniciar-sesion">
+          <Link to="/IniciarSesion">
             <button style={{borderRadius: '10px', border:'none'}}>Inicia Sesión</button>
           </Link>
           </div>

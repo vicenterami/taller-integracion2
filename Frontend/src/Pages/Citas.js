@@ -9,8 +9,7 @@ const Citas = () => {
                 const response = await fetch("http://45.236.129.38:3000/api/citas/disponibles");
                 if (response.status === 200) {
                     const data = await response.json(); // Parsea la respuesta JSON
-                    setCita(data.citas);
-                    //console.log(data);
+                    setCita(data.citas);//le indico el nombre del objeto
                 } else {
                     console.error("Error en las citas");
                 }

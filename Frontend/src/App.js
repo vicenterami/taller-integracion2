@@ -15,7 +15,7 @@ function App() {
         <header className="App-header">
           <Routes>
             <Route path="/" element={<Welcome />} />
-            <Route path="/iniciar-sesion" element={<IniciarSesion />} />
+            <Route path="/IniciarSesion" element={<IniciarSesion />} />
             <Route path="/registrarse" element={<Registrarse />} />
             <Route path="/home" element={<Home />} />{" "}
             <Route path="/perfil" element={<Perfil />} />{" "}
