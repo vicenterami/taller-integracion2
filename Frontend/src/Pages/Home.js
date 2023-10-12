@@ -19,6 +19,11 @@ function Home() {
     // Cambia la ruta a "/perfil" cuando se hace clic en el botón
     navigate("/perfil");
   };
+  const handleIrReservar = () => {
+    // Cambia la ruta a "/perfil" cuando se hace clic en el botón
+    navigate("/reservar");
+  };
+
       //logout
   const handleLogout = () => {
     localStorage.removeItem( userData);
@@ -57,6 +62,9 @@ function Home() {
       </div>
       <button onClick={handleIrAPerfil}>
       Ir a Perfil
+    </button>
+    <button onClick={handleIrReservar}>
+      Ir a reservar
     </button>
       <div id="contenidoHome" style={{ margin: "20px", fontSize: "18px" }}>
         {/* Mostrar contenido según la página seleccionada */}
