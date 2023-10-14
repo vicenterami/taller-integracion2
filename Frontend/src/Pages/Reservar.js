@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../AuthContext'; 
+import ArrowComponent from './utilidades/BackArrow';
 
 const Reservar = () => {
   const { userData } = useAuth();
@@ -44,6 +45,7 @@ const Reservar = () => {
 
   return (
     <div style={{ backgroundColor: '#252A31', padding: '20px' }}>
+      <div> <ArrowComponent/></div>
       <div>
         <h1>Horas Médicas Disponibles</h1>
         <p>

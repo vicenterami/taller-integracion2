@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../Images/logo.png";
 import * as yup from 'yup'
 import { Validations } from '../ValidaciónDatos/DataValidation';
+import ArrowComponent from "./utilidades/BackArrow";
 
 function Register() {
   const navigate = useNavigate();
@@ -58,7 +59,9 @@ function Register() {
     }
   };
   return (
-    <div className="container" style={{ backgroundColor:'#b2d8d8', padding:'20px', borderRadius: '15px'}}>        
+    
+    <div className="container" style={{ backgroundColor:'#b2d8d8', padding:'20px', borderRadius: '15px'}}> 
+    <div> <ArrowComponent/></div>       
       <div className="row justify-content-center">
         <div className="col-12 col-md-8 col-lg-6">
           <div style={{ backgroundColor: '#ADD8E6', padding: '20px', borderRadius: '15px' }}>

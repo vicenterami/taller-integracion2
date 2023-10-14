@@ -4,6 +4,7 @@ import logo from "../Images/logo.png";
 import { useAuth } from "../AuthContext";
 
 import { useNavigate } from "react-router-dom";
+import ArrowComponent from "./utilidades/BackArrow";
 
 function IniciarSesion({ navigation }) {
   const { login } = useAuth();  // Obtén la función login del contexto
@@ -50,7 +51,7 @@ function IniciarSesion({ navigation }) {
         
         }
       </div>
-
+        
       <div className="container-fluid vh-100 d-flex justify-content-center align-items-center ">
         <div
           className=" bg-primary position-absolute "
@@ -64,6 +65,7 @@ function IniciarSesion({ navigation }) {
             boxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
           }}
         ></div>
+        
         <div
           className=" bg-primary position-absolute "
           style={{
@@ -84,6 +86,7 @@ function IniciarSesion({ navigation }) {
             boxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
           }}
         >
+          <div> <ArrowComponent/></div>
           <div className="row  ">
             <div className="col-lg-6 d-flex flex-column justify-content-center align-items-center position-relative">
               <div>
@@ -140,6 +143,7 @@ function IniciarSesion({ navigation }) {
                     Recordarme
                   </label>
                 </div>
+                
                 <button type="submit" className="btn btn-primary btn-lg fs-4">
                   Iniciar Sesión
                 </button>
