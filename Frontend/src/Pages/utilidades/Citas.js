@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Citas = () => {
     const navigate = useNavigate();
     const [cita, setCita] = useState([]);
+    const [mensaje, setMensaje] = useState();
 
     const handleIrReservar = () => {
         // Cambia la ruta a "/perfil" cuando se hace clic en el botón
@@ -16,7 +17,12 @@ const Citas = () => {
                 const response = await fetch("http://45.236.129.38:3000/api/citas/disponibles");
                 if (response.status === 200) {
                     const data = await response.json(); // Parsea la respuesta JSON
-                    setCita(data.citas);//le indico el nombre del objeto
+                    //si existen datos lo colo sino pongo un mensaje de la base de datos
+                    if (data.citas) {
+                        setCita(data.citas);//le indico el nombre del objeto
+                    } else {
+                        setMensaje(data.message)
+                    }
                 } else {
                     console.error("Error en las citas");
                 }
@@ -40,21 +46,30 @@ const Citas = () => {
     )
 
   return (
-    <><div><button onClick={handleIrReservar}>Ir a reservar</button></div>
-    
-    <table className='table table-dark table-hover'>
-          <thead>
-              <tr>
-                  <th scope='col'>#</th>
-                  <th scope='col'>Doctor</th>
-                  <th scope='col'>Especialidad</th>
-                  <th scope='col'>Fecha</th>
-              </tr>
-          </thead>
-          <tbody>
-              {agendas}
-          </tbody>
-      </table></>
+    <>
+        <div><button onClick={handleIrReservar}>Ir a reservar</button></div>
+        {/* condicional que si la agenda no esta vacia muestre los datos del seguimiento */}
+        {agendas.length !== 0 ? (
+            <table className='table table-dark table-hover'>
+            <thead>
+                <tr>
+                    <th scope='col'>#</th>
+                    <th scope='col'>Doctor</th>
+                    <th scope='col'>Especialidad</th>
+                    <th scope='col'>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                {agendas}
+            </tbody>
+        </table>
+        ) : (
+            <div>
+                <p>No existen horas disponibles</p>
+                <p>{mensaje}</p>
+            </div>
+        )}
+      </>
   )
 }
 

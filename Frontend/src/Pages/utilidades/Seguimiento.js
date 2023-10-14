@@ -46,35 +46,37 @@ const Seguimiento = () => {
             <th scope='row'>{item.doctor}</th>
             <th scope='row'>{item.notas}</th>
             <th scope='row'>{item.hora}</th>
+            <th scope='row'>{item.medicamentos}</th>
         </tr>
     )
 
-
-return (
-  <div>
-    {/* condicional que si la evolucion no esta vacia muestre los datos del seguimiento */}
-    {evol.length !== 0  ? (
-        <table className='table table-dark table-hover'>
-        <thead>
-            <tr>
-                <th scope='col'>#</th>
-                <th scope='col'>Doctor</th>
-                <th scope='col'>Notas</th>
-                <th scope='col'>Hora</th>
-            </tr>
-        </thead>
-        <tbody>
-            {evolucion}
-        </tbody>
-        </table>
-    ) : (
-        <div>
-            <p>No tiene seguimiento </p>
-            <p>{mensaje}</p>
-        </div>
-    )}
-  </div>
-  )
+    
+    return (
+      <div>
+        {/* condicional que si la evolucion no esta vacia muestre los datos del seguimiento */}
+        {evol.length !== 0  ? (
+            <table className='table table-dark table-hover'>
+            <thead>
+                <tr>
+                    <th scope='col'>#</th>
+                    <th scope='col'>Doctor</th>
+                    <th scope='col'>Notas</th>
+                    <th scope='col'>Hora</th>
+                    <th scope='col'>Medicamentos</th>
+                </tr>
+            </thead>
+            <tbody>
+                {evolucion}
+            </tbody>
+            </table>
+        ) : (
+            <div>
+                <p>No tiene seguimiento </p>
+                <p>{mensaje}</p>
+            </div>
+        )}
+      </div>
+      )
 }
 
 export default Seguimiento
