@@ -35,14 +35,19 @@ function Welcome() {
     margin: '10px',
     textAlign: 'center',
   };
+  
+  const carouselIMG = {
+    width: '100%',
+    maxHeight: '400px'
+  };
   return (
     <div style={{backgroundColor: 'white'}}>
       <div>
         <Carousel>
-          <Carousel.Item>
+          <Carousel.Item style={carouselIMG}>
             <img className="d-block w-100" src={img1} alt="Imagen 1"/>
           </Carousel.Item>
-          <Carousel.Item>
+          <Carousel.Item style={carouselIMG}>
             <img className="d-block w-100" src={img2} alt="Imagen 2"/>
           </Carousel.Item>
         </Carousel>
@@ -61,7 +66,7 @@ function Welcome() {
           </Link>
           </div>
           <div style={botonbox}>
-            <p>¿Deseas registrarte?</p>
+            <p>¿Primera vez en CeFan?</p>
           <Link to="/registrarse">
             <button style={{borderRadius: '10px', border:'none'}}>Registrarse</button>
           </Link>
