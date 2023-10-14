@@ -1,8 +1,15 @@
 import React, {useState, useEffect} from 'react'
+import { useNavigate } from "react-router-dom";
 
 const Citas = () => {
+    const navigate = useNavigate();
     const [cita, setCita] = useState([]);
 
+    const handleIrReservar = () => {
+        // Cambia la ruta a "/perfil" cuando se hace clic en el botón
+        navigate("/reservar");
+      };
+    
     useEffect(() => {
         const citasDelPaciente = async () => {
             try {
@@ -33,20 +40,21 @@ const Citas = () => {
     )
 
   return (
+    <><div><button onClick={handleIrReservar}>Ir a reservar</button></div>
     
     <table className='table table-dark table-hover'>
-        <thead>
-            <tr>
-                <th scope='col'>#</th>
-                <th scope='col'>Doctor</th>
-                <th scope='col'>Especialidad</th>
-                <th scope='col'>Fecha</th>
-            </tr>
-        </thead>
-        <tbody>
-            {agendas}
-        </tbody>
-    </table>
+          <thead>
+              <tr>
+                  <th scope='col'>#</th>
+                  <th scope='col'>Doctor</th>
+                  <th scope='col'>Especialidad</th>
+                  <th scope='col'>Fecha</th>
+              </tr>
+          </thead>
+          <tbody>
+              {agendas}
+          </tbody>
+      </table></>
   )
 }
 
