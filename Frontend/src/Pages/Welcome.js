@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
-import logo from "../Images/logo.png";
+import logo from "../Images/Logocircular.png";
 import img1 from "../Images/imagen1.jpg";
 import img2 from "../Images/imagen2.jpg";
 
 function Welcome() {
   const estiloBienvenida = {
     fontSize: "auto",
-    color: "black",
+    color: "white",
     textAlign: "center",
   };
   const logoStyle = {
@@ -19,21 +19,30 @@ function Welcome() {
     display: 'flex',
     justifyContent: 'space-evenly',
     alignItems: 'center',
+    padding: '12px',
   };
   const box = {
     display: 'flex',
     justifyContent: 'center',
     padding: '10px',
     margin: '5px',
-    color: 'black',
+    color: 'white',
   };
 
   const botonbox = {
-    border: '1px solid gray',
+    border: '1px solid black',
+    backgroundColor: '',
     borderRadius: '10px',
     padding: '10px',
     margin: '10px',
     textAlign: 'center',
+    boxShadow: '10px 10px 5px black',
+  };
+  const boton = {
+    backgroundColor: '#2050e0',
+    borderRadius: '10px',
+    border:'none',
+    color: 'white',
   };
   
   const carouselIMG = {
@@ -41,7 +50,7 @@ function Welcome() {
     maxHeight: '400px'
   };
   return (
-    <div style={{backgroundColor: 'white'}}>
+    <div>
       <div>
         <Carousel>
           <Carousel.Item style={carouselIMG}>
@@ -55,21 +64,21 @@ function Welcome() {
             <img src={logo} alt="Logo" style={{logoStyle}}/>
           <div>
             <h2 style={estiloBienvenida}>Bienvenido a Cefan</h2>
-            <p style={{color: 'black'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla.</p>
-          </div>
-        </div>
-        <div style={box}>
-          <div style={botonbox}>
-            <p>¿Tienes una cuenta?</p>
-          <Link to="/IniciarSesion">
-            <button style={{borderRadius: '10px', border:'none'}}>Inicia Sesión</button>
-          </Link>
-          </div>
-          <div style={botonbox}>
-            <p>¿Primera vez en CeFan?</p>
-          <Link to="/registrarse">
-            <button style={{borderRadius: '10px', border:'none'}}>Registrarse</button>
-          </Link>
+            <p style={estiloBienvenida}>Un lugar donde nos preocupamos de tu salud.</p>
+            <div style={box}>
+              <div style={botonbox}>
+                <p>¿Tienes una cuenta?</p>
+                <Link to="/IniciarSesion">
+                  <button style={boton}>Inicia Sesión</button>
+                </Link>
+              </div>
+              <div style={botonbox}>
+                <p>¿Primera vez en CeFan?</p>
+                <Link to="/registrarse">
+                  <button style={boton}>Registrate</button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
