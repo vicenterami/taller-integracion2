@@ -12,20 +12,20 @@ function Welcome() {
     textAlign: "center",
   };
   const logoStyle = {
-    width: '200px',
-    heigth: '200px',
+    width: '200',
+    heigth: '200',
   };
   const logotext = {
     display: 'flex',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    padding: '12px',
+    padding: '12',
   };
   const box = {
     display: 'flex',
     justifyContent: 'center',
-    padding: '10px',
-    margin: '5px',
+    padding: '10',
+    margin: '5',
     color: 'white',
   };
 
