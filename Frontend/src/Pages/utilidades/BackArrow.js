@@ -1,11 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const ArrowComponent = () => {
+const ArrowComponent = ({ to }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("..", { relative: "path" });
+    navigate(to);
   };
 
   return (
@@ -43,4 +43,5 @@ const ArrowComponent = () => {
     </div>
   );
 };
+
 export default ArrowComponent;
