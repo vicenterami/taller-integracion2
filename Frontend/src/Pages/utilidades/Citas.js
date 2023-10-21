@@ -47,7 +47,7 @@ const Citas = () => {
 
   return (
     <>
-        <div><button onClick={handleIrReservar}>Ir a reservar</button></div>
+        
         {/* condicional que si la agenda no esta vacia muestre los datos del seguimiento */}
         {agendas.length !== 0 ? (
             <table className='table table-dark table-hover'>
@@ -69,7 +69,11 @@ const Citas = () => {
                 <p>{mensaje}</p>
             </div>
         )}
+        <div className='d-flex justify-content-center'>
+            <button className='btn btn-outlined btn-primary' style={{border: '3px solid #428bca',background: '#428bca', color:'white'}} onClick={handleIrReservar}>Ir a reservar</button>
+        </div>
       </>
+
   )
 }
 

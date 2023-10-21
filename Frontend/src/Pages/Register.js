@@ -61,7 +61,7 @@ function Register() {
   return (
     
     <div className="container" style={{ backgroundColor:'#b2d8d8', padding:'20px', borderRadius: '15px'}}> 
-    <div> <ArrowComponent/></div>       
+    <div> <ArrowComponent to={"/"}/></div>       
       <div className="row justify-content-center">
         <div className="col-12 col-md-8 col-lg-6">
           <div style={{ backgroundColor: '#ADD8E6', padding: '20px', borderRadius: '15px' }}>

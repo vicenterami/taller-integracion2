@@ -15,7 +15,6 @@ function IniciarSesion({ navigation }) {
 
   const [errorMessage, setErrorMessage] = useState(""); // Nuevo estado para mensaje de error
 
-
   const handleLogin = async (event) => {
     event.preventDefault();
 
@@ -42,69 +41,25 @@ function IniciarSesion({ navigation }) {
       console.error("Error en el inicio de sesión:", error);
     }
   };
+
   return (
     <div>
       <div className="bg-primary" style={{ width: "100%" }}>
-        {
-          
-        /* Aquí va el nabvar    */
-        
-        }
+        {/* Aquí va el navbar */}
       </div>
         
-      <div className="container-fluid vh-100 d-flex justify-content-center align-items-center ">
-        <div
-          className=" bg-primary position-absolute "
-          style={{
-            minWidth: "59%",
-            minHeight: "62%",
-            marginBottom: "3%",
-            marginLeft: "2.6%",
-            WebkitBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
-            MozBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
-            boxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
-          }}
-        ></div>
-        
-        <div
-          className=" bg-primary position-absolute "
-          style={{
-            minWidth: "59%",
-            minHeight: "62%",
-            marginTop: "3%",
-            marginRight: "2.6%",
-            WebkitBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
-            MozBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
-            boxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
-          }}
-        ></div>
-        <div
-          className="bg-primary border p-5 position-absolute"
-          style={{
-            WebkitBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
-            MozBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
-            boxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
-          }}
-        >
-          <div> <ArrowComponent/></div>
-          <div className="row  ">
+      <div className="container-fluid vh-100 d-flex justify-content-center align-items-center">
+        <div className="bg-primary position-absolute" style={{ width: "59%", height: "62%", marginBottom: "3%", marginLeft: "2.6%", WebkitBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)", MozBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)", boxShadow: "0px 0px 35px -10px rgba(0,0,0,1)" }}></div>
+        <div className="bg-primary position-absolute" style={{ width: "59%", height: "62%", marginTop: "3%", marginRight: "2.6%", WebkitBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)", MozBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)", boxShadow: "0px 0px 35px -10px rgba(0,0,0,1)" }}></div>
+        <div className="bg-primary border p-5 position-absolute" style={{ WebkitBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)", MozBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)", boxShadow: "0px 0px 35px -10px rgba(0,0,0,1)" }}>
+          <div> <ArrowComponent to={"/"}/></div>
+          <div className="row">
             <div className="col-lg-6 d-flex flex-column justify-content-center align-items-center position-relative">
               <div>
-                <img
-                  src={logo}
-                  className="img-thumbnail"
-                  style={{
-                    maxWidth: "100%",
-                    height: "auto",
-                    WebkitBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
-                    MozBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
-                    boxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
-                  }}
-                  alt="Logo Cefan"
-                />
+                <img src={logo} className="img-thumbnail" style={{ maxWidth: "100%", height: "auto", WebkitBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)", MozBoxShadow: "0px 0px 35px -10px rgba(0,0,0,1)", boxShadow: "0px 0px 35px -10px rgba(0,0,0,1)" }} alt="Logo Cefan" />
               </div>
             </div>
-            <div className="col-lg-6  d-flex flex-column justify-content-center align-items-center position-relative">
+            <div className="col-lg-6 d-flex flex-column justify-content-center align-items-center position-relative">
               <h2 className="display-4">Iniciar Sesión</h2>
               <form onSubmit={handleLogin}>
                 <div className="mb-4">
@@ -133,20 +88,17 @@ function IniciarSesion({ navigation }) {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-                <div className="mb-4 form-check">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    id="recordarme"
-                  />
-                  <label className="form-check-label fs-4" htmlFor="recordarme">
-                    Recordarme
-                  </label>
+                <div className="d-flex mb-2 ">
+                  <p style={{fontSize:"85%", marginTop:'9px'}}>¿No tienes cuenta?</p>
+                  <button className="btn btn-info btn-sm m-2">Create</button>
                 </div>
-                
-                <button type="submit" className="btn btn-primary btn-lg fs-4">
-                  Iniciar Sesión
-                </button>
+
+                <div className="d-flex justify-content-center">      
+                  <button type="submit" className="btn btn-info btn-lg fs-5">
+                    Iniciar Sesión
+                  </button>
+                </div>
+
                 {errorMessage && ( // Muestra el mensaje de error solo si hay un mensaje
                   <div className="alert alert-danger mt-3" role="alert">
                     {errorMessage}
