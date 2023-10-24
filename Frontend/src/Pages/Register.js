@@ -40,9 +40,6 @@ function Register() {
       const data = await response.json();
 
       if (response.status === 201) {
-        const data = await response.json();
-        const rutUsuario = data.rut;
-        console.log(data);
         alert("Usuario registrado exitosamente");
         navigate("/IniciarSesion");
       }  else if({ state: { rut: data.rut } }){
