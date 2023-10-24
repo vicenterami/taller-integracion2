@@ -90,7 +90,7 @@ function IniciarSesion({ navigation }) {
                 </div>
                 <div className="d-flex mb-2 ">
                   <p style={{fontSize:"85%", marginTop:'9px'}}>¿No tienes cuenta?</p>
-                  <button className="btn btn-info btn-sm m-2">Create</button>
+                  <button className="btn btn-info btn-sm m-2" onClick={() => navigate("/registrarse")}>Crear cuenta</button>
                 </div>
 
                 <div className="d-flex justify-content-center">      
