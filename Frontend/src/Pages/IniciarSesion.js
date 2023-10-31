@@ -1,51 +1,57 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import logo from "../Images/logo.png";
 import { useAuth } from "../AuthContext";
-
 import { useNavigate } from "react-router-dom";
 import ArrowComponent from "./utilidades/BackArrow";
 
-function IniciarSesion({ navigation }) {
-  const { login } = useAuth();  // Obtén la función login del contexto
+function IniciarSesion() {
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [rut, setRut] = useState("");
-  
   const [contrasena, setPassword] = useState("");
-
-  const [errorMessage, setErrorMessage] = useState(""); // Nuevo estado para mensaje de error
+  const [errorMessage, setErrorMessage] = useState(""); 
 
   const handleLogin = async (event) => {
     event.preventDefault();
-
     try {
-      const response = await fetch("http://45.236.129.38:3000/api/login", {
+      const response = await fetch("http://192.168.1.7:3000/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ rut, contrasena }),
       });
-
+  
       if (response.status === 200) {
         const data = await response.json();
         console.log(data);
+  
+        if (data.isDoctor === true) { 
+          navigate("/UsuarioDoctor");
+        } 
+        else if (data.isAdmin === true) {
+          navigate("/UsuarioAdministrador");
+        } 
+        else {
+          navigate("/home");
+        }
+        
+        
+  
         login(data);
-        localStorage.setItem("token", data.token);
-
-        navigate("/home");
       } else if (response.status === 401) {
-        setErrorMessage('Usuario o contraseña incorrecto');
+        setErrorMessage("Usuario o contraseña incorrectos");
       }
     } catch (error) {
       console.error("Error en el inicio de sesión:", error);
+      setErrorMessage("Error en el inicio de sesión");
     }
   };
-
+  
   return (
     <div>
       <div className="bg-primary" style={{ width: "100%" }}>
-        {/* Aquí va el navbar */}
+      
       </div>
         
       <div className="container-fluid vh-100 d-flex justify-content-center align-items-center">
@@ -67,13 +73,14 @@ function IniciarSesion({ navigation }) {
                     Rut
                   </label>
                   <input
-                    type="rut"
-                    className="form-control form-control-lg p-3"
-                    id="rut"
-                    placeholder="12123123-1"
-                    value={rut}
-                    onChange={(e) => setRut(e.target.value)}
-                  />
+                  type="text"
+                  className="form-control form-control-lg p-3"
+                  id="rut"
+                  placeholder="12123123-1"
+                  value={rut}
+                  onChange={(e) => setRut(e.target.value)}
+                />
+
                 </div>
                 <div className="mb-4">
                   <label htmlFor="contrasena" className="form-label fs-4">

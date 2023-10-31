@@ -4,12 +4,12 @@ const User = require('../models/User');
 const UserData = require('../models/userData');
 const Cita = require('../models/cita');
 const Evolucion = require('../models/evolucion');
-
+const jwt = require('jsonwebtoken');
 
 router.post('/register', async (req, res) => {
   try {
-    const { nombre, rut, correo, telefono, contrasena } = req.body; 
-    const user = new User({ nombre, rut, correo, telefono, contrasena }); 
+    const { nombre, rut, correo, telefono, contrasena, rol } = req.body;
+    const user = new User({ nombre, rut, correo, telefono, contrasena, rol });
     await user.save();
 
     res.status(201).json({ message: 'Usuario registrado con éxito' });
@@ -19,21 +19,32 @@ router.post('/register', async (req, res) => {
   }
 });
 
+
+
+
 router.post('/login', async (req, res) => {
   try {
     const { rut, contrasena } = req.body;
     const user = await User.findOne({ rut, contrasena });
+    
+    if (user) {
+      const isAdmin = user.rol === 'administrador';
+      const isDoctor = user.rol === 'doctor';
 
-    if (!user) {
-      return res.status(401).json({ message: 'Usuario o contraseña inconrrecto' });
+      // Genera un token JWT
+      const token = jwt.sign({ userId: user._id, isAdmin, isDoctor }, 'tu_secreto_secreto', { expiresIn: '1h' });
+
+      res.status(200).json({ message: 'Inicio de sesión exitoso', rut: user.rut, nombre: user.nombre, isAdmin, isDoctor, token });
+    } else { 
+      res.status(401).json({ message: 'Credenciales inválidas' });
     }
-
-    res.status(200).json({ message: 'Inicio de sesión exitoso', rut: user.rut ,nombre: user.nombre });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error en el inicio de sesión' });
   }
 });
+
+
 
 router.get('/User/:rut', async (req, res) => {
   try {
@@ -136,8 +147,7 @@ router.get('/evoluciones/:rutt', async (req, res) => {
     const evolucionesDelPaciente = await Evolucion.find({ pacienteRut: rutPaciente });
 
     if (evolucionesDelPaciente.length === 0) {
-      const mensaje = ['No se encontraron evoluciones médicas asociadas a este paciente']
-      res.status(200).json({ message: mensaje });
+      res.status(200).json({ message: 'No se encontraron evoluciones médicas asociadas a este paciente' });
     } else {
       res.status(200).json({ evoluciones: evolucionesDelPaciente });
     }

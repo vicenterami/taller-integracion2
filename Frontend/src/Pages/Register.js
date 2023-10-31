@@ -1,17 +1,23 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import logo from "../Images/logo.png";
-import * as yup from 'yup'
+import * as yup from 'yup';
 import { Validations } from '../ValidaciónDatos/DataValidation';
 import ArrowComponent from "./utilidades/BackArrow";
 
 function Register() {
-  const navigate = useNavigate();
   const [nombre, setNombre] = useState("");
   const [rut, setRut] = useState("");
   const [correo, setCorreo] = useState("");
   const [telefono, setFono] = useState("");
   const [contrasena, setPassword] = useState("");
+
+  const formStyle = {
+    border: "1px solid #ccc",
+    padding: "20px",
+    boxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
+    backgroundColor: "#00ADB5",
+  };
 
   const handleRegister = async (event) => {
     event.preventDefault();
@@ -21,7 +27,8 @@ function Register() {
       'correo': correo,
       'telefono': telefono,
       'contrasena': contrasena
-    }
+    };
+
     try {
       await Validations.validate({
         nombre,
@@ -41,99 +48,110 @@ function Register() {
 
       if (response.status === 201) {
         alert("Usuario registrado exitosamente");
-        navigate("/IniciarSesion");
-      }  else if({ state: { rut: data.rut } }){
-          alert('el RUT ya esta registrado')
+        // Redirige a la página de inicio de sesión u otra página según tus necesidades.
+      } else if (response.status === 401) {
+        alert('El RUT ya está registrado');
       } else {
-        alert('ocurrio un error')
+        alert('Ocurrió un error');
       }
     } catch (error) {
-      if(error instanceof yup.ValidationError) {
+      if (error instanceof yup.ValidationError) {
         alert(error.message);
       } else {
         console.error("Error al registrar usuario:", error);
       }
     }
   };
+
   return (
-    
-    <div className="container" style={{ backgroundColor:'#b2d8d8', padding:'20px', borderRadius: '15px'}}> 
-    <div> <ArrowComponent to={"/"}/></div>       
-      <div className="row justify-content-center">
-        <div className="col-12 col-md-8 col-lg-6">
-          <div style={{ backgroundColor: '#ADD8E6', padding: '20px', borderRadius: '15px' }}>
-            <div className="text-center mb-5" style={{display: 'flex', flexDirection:'column', alignItems: 'center'}}>
-              <img src={logo} alt="Logo"  style={{width: '150px', marginBottom: '20px'}} />
-              <h2 >Registro</h2>
+    <div>
+      
+      <div className="container-fluid vh-100 d-flex justify-content-center align-items-center">
+      
+        <div style={formStyle}> 
+          <div className="row">
+          <div> <ArrowComponent to={"/"}/></div> 
+            <div className="col-lg-6 d-flex flex-column justify-content-center align-items-center">
+            
+              <div>
+                <img src={logo} className="img-thumbnail" alt="Logo Cefan" />
+              </div>
             </div>
-            <form onSubmit={handleRegister} className="mb-4">
-              <div className="form-group">
-                <label> Nombre y apellidos</label>
-                <input 
-                type="text" 
-                placeholder="Ej: Juan Perez Soto"
-                id="nombre"
-                value={nombre}
-                onChange={(e) => setNombre(e.target.value)}
-                className="form-control"
-                ></input>
-              </div>
-              <div className="form-group">
-                <label>Rut</label>
-                <input 
-                type="rut" 
-                placeholder="1.111.111-1"
-                id="rut"
-                value={rut}
-                onChange={(e) => setRut(e.target.value)}
-                className="form-control"
-                ></input>
-              </div>
-              <div className="form-group">
-                <label>Correo electrónico</label>
-                <input 
-                type="email" 
-                placeholder="nombre@ejemplo.com"
-                id="correo"
-                value={correo}
-                onChange={(e) => setCorreo(e.target.value)}
-                className="form-control"
-                ></input>
-              </div>
-              <div className="form-group">
-                <label>Teléfono</label>
-                <input 
-                type="number" 
-                placeholder="9-12345678"
-                id="telefono"
-                value={telefono}
-                onChange={(e) => setFono(e.target.value)}
-                className="form-control"
-                ></input>
-              </div>
-              <div className="form-group">
-                <label>Contraseña</label>
-                <input 
-                type="password" 
-                placeholder="Contraseña..."
-                id="contrasena"
-                value={contrasena}
-                onChange={(e) => setPassword(e.target.value)}
-                className="form-control"
-                ></input>
-              </div>
-              {/* <div className="form-group">
-                <label>Confirmar contraseña</label>
-                <input 
-                type="password" 
-                placeholder="Confirmar contraseña..."
-                className="form-control"
-                ></input>
-              </div> */}
-              <button type="submit" className="btn btn-primary mt-3"> 
-                Registrarse
-              </button>
-            </form>
+            <div className="col-lg-6 d-flex flex-column justify-content-center align-items-center">
+              <h2 className="display-4">Registro</h2>
+              <form onSubmit={handleRegister}>
+                <div className="mb-2">
+                  <label htmlFor="nombre" className="form-label fs-4">
+                    Nombre y apellidos
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="nombre"
+                    placeholder="Ej: Juan Perez Soto"
+                    value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
+                  />
+                </div>
+                <div className="mb-2"> 
+                  <label htmlFor="rut" className="form-label fs-4">
+                    Rut
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="rut"
+                    placeholder="1.111.111-1"
+                    value={rut}
+                    onChange={(e) => setRut(e.target.value)}
+                  />
+                </div>
+                <div className="mb-2"> 
+                  <label htmlFor="correo" className="form-label fs-4">
+                    Correo electrónico
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="correo"
+                    placeholder="nombre@ejemplo.com"
+                    value={correo}
+                    onChange={(e) => setCorreo(e.target.value)}
+                  />
+                </div>
+                <div className="mb-2"> 
+                  <label htmlFor="telefono" className="form-label fs-4">
+                    Teléfono
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="telefono"
+                    placeholder="9-12345678"
+                    value={telefono}
+                    onChange={(e) => setFono(e.target.value)}
+                  />
+                </div>
+                <div className="mb-2"> 
+                  <label htmlFor="contrasena" className="form-label fs-4">
+                    Contraseña
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="contrasena"
+                    placeholder="Contraseña..."
+                    value={contrasena}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+                <div className="d-flex justify-content-center">
+                  <button type="submit" className="btn btn-info btn-lg fs-5">
+                    Registrarse
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
