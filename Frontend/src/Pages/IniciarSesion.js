@@ -14,7 +14,7 @@ function IniciarSesion() {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://192.168.1.7:3000/api/login", {
+      const response = await fetch("http://192.168.1.10:3000/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -95,15 +95,16 @@ function IniciarSesion() {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-                <div className="d-flex mb-2 ">
-                  <p style={{fontSize:"85%", marginTop:'9px'}}>¿No tienes cuenta?</p>
-                  <button className="btn btn-info btn-sm m-2" onClick={() => navigate("/registrarse")}>Crear cuenta</button>
-                </div>
 
                 <div className="d-flex justify-content-center">      
                   <button type="submit" className="btn btn-info btn-lg fs-5">
                     Iniciar Sesión
                   </button>
+                </div>
+
+                <div className="d-flex mb-2 ">
+                  <p style={{fontSize:"85%", marginTop:'9px'}}>¿No tienes cuenta?</p>
+                  <button className="btn btn-info btn-sm m-2" onClick={() => navigate("/registrarse")}>Crear cuenta</button>
                 </div>
 
                 {errorMessage && ( // Muestra el mensaje de error solo si hay un mensaje

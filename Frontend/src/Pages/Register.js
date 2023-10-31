@@ -37,14 +37,14 @@ function Register() {
         telefono,
         contrasena,
       });
-      const response = await fetch("http://45.236.129.38:3000/api/register", {
+      const response = await fetch("http://192.168.1.10:3000/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(parametros),
       });
-      const data = await response.json();
+      //const data = await response.json();
 
       if (response.status === 201) {
         alert("Usuario registrado exitosamente");

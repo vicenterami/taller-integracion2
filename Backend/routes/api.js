@@ -19,7 +19,18 @@ router.post('/register', async (req, res) => {
   }
 });
 
+router.post('/subirHora', async (req, res) => {
+  try {
+    const { doctor, especialidad, fecha, disponible, reservada, pacienteRut } = req.body;
+    const cita = new Cita({ doctor, especialidad, fecha, disponible, reservada, pacienteRut });
+    await cita.save();
 
+    res.status(201).json({ message: 'cita registrado con éxito' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error al registrar cita' });
+  }
+});
 
 
 router.post('/login', async (req, res) => {

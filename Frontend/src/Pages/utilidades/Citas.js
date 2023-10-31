@@ -14,7 +14,7 @@ const Citas = () => {
     useEffect(() => {
         const citasDelPaciente = async () => {
             try {
-                const response = await fetch("http://192.168.1.7:3000/api/citas/disponibles");
+                const response = await fetch("http://192.168.1.10:3000/api/citas/disponibles");
                 if (response.status === 200) {
                     const data = await response.json(); // Parsea la respuesta JSON
                     //si existen datos lo colo sino pongo un mensaje de la base de datos
