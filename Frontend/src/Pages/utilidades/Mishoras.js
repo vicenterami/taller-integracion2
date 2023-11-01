@@ -9,7 +9,7 @@ const Mishoras = () => {
   useEffect(() => {
       const evolucionDelPaciente = async () => {
           try {
-              const response = await fetch(`http://192.168.1.10:3000/api/citas/disponibles/${userData.rut}`);
+              const response = await fetch(`http://localhost:3000/api/citas/disponibles/${userData.rut}`);
               if (response.status === 200) {
                   const data = await response.json(); // Parsea la respuesta JSON
                   //si existen datos lo colo sino pongo un mensaje de la base de datos

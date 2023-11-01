@@ -12,7 +12,7 @@ function Perfil() {
     const fetchData = async () => {
       if (userData && userData.rut) {
         try {
-          const response = await axios.get(`http://192.168.1.10:3000/api/User/${userData.rut}`);
+          const response = await axios.get(`http://localhost:3000/api/User/${userData.rut}`);
           setData(response.data.user);
         } catch (error) {
           console.error(error);

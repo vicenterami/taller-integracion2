@@ -37,7 +37,7 @@ function Register() {
         telefono,
         contrasena,
       });
-      const response = await fetch("http://192.168.1.10:3000/api/register", {
+      const response = await fetch("http://localhost:3000/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

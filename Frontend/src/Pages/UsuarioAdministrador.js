@@ -55,7 +55,7 @@ function UsuarioAdministrador() {
       //   telefono,
       //   contrasena,
       // });
-      const response = await axios.post("http://192.168.1.10:3000/api/subirHora", {
+      const response = await axios.post("http://localhost:3000/api/subirHora", {
         'doctor': doctor,
         'especialidad': especialidad,
         'fecha': fechaHora,
@@ -67,7 +67,11 @@ function UsuarioAdministrador() {
 
       if (response.status === 201) {
         alert("Cita registrada con éxito");
-        // Redirige a la página de inicio de sesión u otra página según tus necesidades.
+        setDoctor('');
+        setEspecialidad('');
+        setFechaHora(new Date().toISOString());
+        setDisponible(null);
+        setPacienteRut('');
       } else if (response.status === 500) {
         alert('Error al registrar cita');
       } else {
