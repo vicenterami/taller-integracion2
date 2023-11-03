@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const appointmentSchema = new mongoose.Schema({
   doctor: String,
+  doctorRut: String,
   especialidad: String,
   fecha: Date,
   disponible: Boolean,

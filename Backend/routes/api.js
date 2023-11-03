@@ -21,16 +21,35 @@ router.post('/register', async (req, res) => {
 
 router.post('/subirHora', async (req, res) => {
   try {
-    const { doctor, especialidad, fecha, disponible, reservada, pacienteRut } = req.body;
-    const cita = new Cita({ doctor, especialidad, fecha, disponible, reservada, pacienteRut });
+    const { doctorRut, especialidad, fecha, disponible, reservada, pacienteRut } = req.body;
+
+    
+    const doctor = await User.findOne({ rut: doctorRut });
+
+    if (!doctor) {
+      return res.status(400).json({ message: 'El doctor con el RUT proporcionado no existe' });
+    }
+
+    
+    const cita = new Cita({
+      doctor: doctor.nombre,
+      especialidad,
+      fecha,
+      disponible,
+      reservada,
+      pacienteRut,
+      doctorRut,
+    });
+
     await cita.save();
 
-    res.status(201).json({ message: 'cita registrado con éxito' });
+    res.status(201).json({ message: 'Cita registrada con éxito' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error al registrar cita' });
   }
 });
+
 
 
 router.post('/login', async (req, res) => {

@@ -24,6 +24,7 @@ function UsuarioAdministrador() {
 
   const [pacienteRut, setPacienteRut] = useState("");
   //
+  const [doctorRut, setDoctorRut] = useState("");
   const [fechaHora, setFechaHora] = useState(new Date().toISOString());
   const handleDateChange = (selectedDate) => {
     setFechaHora(selectedDate.toISOString());
@@ -40,6 +41,7 @@ function UsuarioAdministrador() {
     event.preventDefault();
     const parametros = {
       'doctor': doctor,
+      'doctorRut':doctorRut,
       'especialidad': especialidad,
       'fecha': fechaHora,
       'disponible': disponible,
@@ -57,6 +59,7 @@ function UsuarioAdministrador() {
       // });
       const response = await axios.post("http://localhost:3000/api/subirHora", {
         'doctor': doctor,
+        'doctorRut':doctorRut,
         'especialidad': especialidad,
         'fecha': fechaHora,
         'disponible': disponible,
@@ -68,6 +71,7 @@ function UsuarioAdministrador() {
       if (response.status === 201) {
         alert("Cita registrada con éxito");
         setDoctor('');
+        setDoctorRut('');
         setEspecialidad('');
         setFechaHora(new Date().toISOString());
         setDisponible(null);
@@ -84,7 +88,7 @@ function UsuarioAdministrador() {
   }
   return (
     <div>
-      <h1>Este es un usuario administrador</h1>
+      
 
 
       <div>
@@ -101,21 +105,23 @@ function UsuarioAdministrador() {
               </div>
             </div>
             <div className="col-lg-6 d-flex flex-column justify-content-center align-items-center">
-              <h2 className="display-4">Registro</h2>
+              <h2 className="display-4">Registrar Hora</h2>
               <form onSubmit={handleSubirHora}>
-                <div className="mb-2">
-                  <label htmlFor="doctor" className="form-label fs-4">
-                    Doctor
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="doctor"
-                    placeholder="Ej: Juan Perez Soto"
-                    value={doctor}
-                    onChange={(e) => setDoctor(e.target.value)}
-                  />
-                </div>
+              <div className="mb-2">
+                    <label htmlFor="doctorRut" className="form-label fs-4">
+                      RUT del Doctor
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="doctorRut"
+                      placeholder="Ej: 12.345.678-9"
+                      value={doctorRut}
+                      onChange={(e) => setDoctorRut(e.target.value)}
+                    />
+                  </div>
+               
+               
                 <div className="mb-2"> 
                   <label htmlFor="especialidad" className="form-label fs-4">
                     Especialidad
