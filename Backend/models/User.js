@@ -4,6 +4,12 @@ const userSchema = new mongoose.Schema({
   nombre: String,
   rut: String,
   correo: String,
+  telefono: String,
+  contrasena: String,
+  rol: {
+    type: String,
+    default: 'usuario' 
+  },
 });
 
-module.exports = mongoose.model('Usuario', userSchema); // Asegúrate de que el nombre del modelo coincida con el de la colección en MongoDB
+module.exports = mongoose.model('Usuario', userSchema);
