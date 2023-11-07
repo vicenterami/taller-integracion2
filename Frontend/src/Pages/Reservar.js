@@ -15,11 +15,7 @@ const Reservar = () => {
 
   const obtenerCitasDisponibles = async () => {
     try {
-<<<<<<< Updated upstream
-      const response = await axios.get('http://localhost:3000/api/citas/disponibles');
-=======
       const response = await axios.get('http://45.236.129.38:3000/api/citas/disponibles');
->>>>>>> Stashed changes
       const citas = response.data.citas;
       setCitasDisponibles(citas);
     } catch (error) {
@@ -29,11 +25,7 @@ const Reservar = () => {
 
   const reservarCita = async (citaId) => {
     try {
-<<<<<<< Updated upstream
-      const response = await axios.post('http://localhost:3000/api/citas/reservar', {
-=======
       const response = await axios.post('http://45.236.129.38:3000/api/citas/reservar', {
->>>>>>> Stashed changes
         citaId,
         pacienteId: userData.rut,
       });

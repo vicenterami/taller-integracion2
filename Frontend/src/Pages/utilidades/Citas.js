@@ -14,11 +14,7 @@ const Citas = () => {
     useEffect(() => {
         const citasDelPaciente = async () => {
             try {
-<<<<<<< Updated upstream
-                const response = await fetch("http://localhost:3000/api/citas/disponibles");
-=======
                 const response = await fetch("http://45.236.129.38:3000/api/citas/disponibles");
->>>>>>> Stashed changes
                 if (response.status === 200) {
                     const data = await response.json(); // Parsea la respuesta JSON
                     //si existen datos lo colo sino pongo un mensaje de la base de datos
@@ -37,11 +33,7 @@ const Citas = () => {
             
         }
         citasDelPaciente();
-<<<<<<< Updated upstream
-    },[])
-=======
     })
->>>>>>> Stashed changes
 
     //funcion que mapea las citas almecenadas en la base de datos 
     const agendas = cita.map((item, index) => 

@@ -5,11 +5,7 @@ import { useNavigate } from "react-router-dom";
 import ArrowComponent from "./utilidades/BackArrow";
 
 function IniciarSesion() {
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
+
   const { login } = useAuth();
   const navigate = useNavigate();
   const [rut, setRut] = useState("");
@@ -19,11 +15,7 @@ function IniciarSesion() {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-<<<<<<< Updated upstream
-      const response = await fetch("http://localhost:3000/api/login", {
-=======
       const response = await fetch("http://45.236.129.38:3000/api/login", {
->>>>>>> Stashed changes
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,13 +35,7 @@ function IniciarSesion() {
         } 
         else {
           navigate("/home");
-<<<<<<< Updated upstream
-        }
-        
-        
-=======
         } 
->>>>>>> Stashed changes
   
         login(data);
       } else if (response.status === 401) {
@@ -61,10 +47,6 @@ function IniciarSesion() {
     }
   };
   
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   return (
     <div>
       <div className="bg-primary" style={{ width: "100%" }}>

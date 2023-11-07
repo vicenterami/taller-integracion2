@@ -6,7 +6,6 @@ import { Validations } from '../ValidaciónDatos/DataValidation';
 import ArrowComponent from "./utilidades/BackArrow";
 
 function Register() {
-<<<<<<< Updated upstream
   const [nombre, setNombre] = useState("");
   const [rut, setRut] = useState("");
   const [correo, setCorreo] = useState("");
@@ -69,82 +68,11 @@ function Register() {
       
       <div className="container-fluid vh-100 d-flex justify-content-center align-items-center">
       
-=======
-<<<<<<< Updated upstream
-  return (
-    <div>
-      <h2>Página de Registro</h2>
-      {/* Agrega contenido y formularios de registro aquí */}
-=======
-  const [nombre, setNombre] = useState("");
-  const [rut, setRut] = useState("");
-  const [correo, setCorreo] = useState("");
-  const [telefono, setFono] = useState("");
-  const [contrasena, setPassword] = useState("");
-
-  const formStyle = {
-    border: "1px solid #ccc",
-    padding: "20px",
-    boxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
-    backgroundColor: "#0D6EFD",
-  };
-
-  const handleRegister = async (event) => {
-    event.preventDefault();
-    const parametros = {
-      'nombre': nombre,
-      'rut': rut,
-      'correo': correo,
-      'telefono': telefono,
-      'contrasena': contrasena
-    };
-
-    try {
-      await Validations.validate({
-        nombre,
-        rut,
-        correo,
-        telefono,
-        contrasena,
-      });
-      const response = await fetch("http://45.236.129.38:3000/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(parametros),
-      });
-      //const data = await response.json();
-
-      if (response.status === 201) {
-        alert("Usuario registrado exitosamente");
-        // Redirige a la página de inicio de sesión u otra página según tus necesidades.
-      } else if (response.status === 401) {
-        alert('El RUT ya está registrado');
-      } else {
-        alert('Ocurrió un error');
-      }
-    } catch (error) {
-      if (error instanceof yup.ValidationError) {
-        alert(error.message);
-      } else {
-        console.error("Error al registrar usuario:", error);
-      }
-    }
-  };
-
-  return (
-    <div>  
-      <div className="container-fluid vh-100 d-flex justify-content-center align-items-center">
->>>>>>> Stashed changes
         <div style={formStyle}> 
           <div className="row">
           <div> <ArrowComponent to={"/"}/></div> 
             <div className="col-lg-6 d-flex flex-column justify-content-center align-items-center">
-<<<<<<< Updated upstream
             
-=======
->>>>>>> Stashed changes
               <div>
                 <img src={logo} className="img-thumbnail" alt="Logo Cefan" />
               </div>
@@ -227,10 +155,6 @@ function Register() {
           </div>
         </div>
       </div>
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     </div>
   );
 }
