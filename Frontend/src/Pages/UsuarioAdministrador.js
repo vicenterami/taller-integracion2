@@ -34,7 +34,11 @@ function UsuarioAdministrador() {
     border: "1px solid #ccc",
     padding: "20px",
     boxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
+<<<<<<< Updated upstream
     backgroundColor: "#00ADB5",
+=======
+    backgroundColor: "#0D6EFD",
+>>>>>>> Stashed changes
   };
 
   const handleSubirHora = async (event) => {
@@ -57,7 +61,11 @@ function UsuarioAdministrador() {
       //   telefono,
       //   contrasena,
       // });
+<<<<<<< Updated upstream
       const response = await axios.post("http://localhost:3000/api/subirHora", {
+=======
+      const response = await axios.post("http://45.236.129.38:3000/api/subirHora", {
+>>>>>>> Stashed changes
         'doctor': doctor,
         'doctorRut':doctorRut,
         'especialidad': especialidad,

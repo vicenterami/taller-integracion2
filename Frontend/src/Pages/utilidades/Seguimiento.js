@@ -9,7 +9,11 @@ const Seguimiento = () => {
   useEffect(() => {
       const evolucionDelPaciente = async () => {
           try {
+<<<<<<< Updated upstream
               const response = await fetch(`http://localhost:3000/api/evoluciones/${userData.rut}`);
+=======
+              const response = await fetch(`http://45.236.129.38:3000/api/evoluciones/${userData.rut}`);
+>>>>>>> Stashed changes
               if (response.status === 200) {
                   const data = await response.json(); // Parsea la respuesta JSON
                   if (data.evoluciones) {
@@ -37,7 +41,11 @@ const Seguimiento = () => {
           
       }
       evolucionDelPaciente();
+<<<<<<< Updated upstream
   },[])
+=======
+  })
+>>>>>>> Stashed changes
 
   //funcion que mapea las citas almecenadas en la base de datos 
     const evolucion = evol.map((item, index) => 
