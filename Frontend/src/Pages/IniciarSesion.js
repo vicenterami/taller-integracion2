@@ -24,7 +24,9 @@ function IniciarSesion() {
   
       if (response.status === 200) {
         const data = await response.json();
-        console.log(data);
+        //al iniciar sesion almacena el usuario en el localstorage
+        //esto para poder acceder a los datos del usuario en cualquier pagina
+        localStorage.setItem("userData", JSON.stringify(data));
   
         if (data.isDoctor === true) { 
           navigate("/UsuarioDoctor");

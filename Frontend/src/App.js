@@ -1,5 +1,4 @@
 // App.js
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Welcome from "./Pages/Welcome";
@@ -11,9 +10,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Reservar from "./Pages/Reservar";
 import UsuarioAdministrador from "./Pages/UsuarioAdministrador"; 
 import UsuarioDoctor from "./Pages/UsuarioDoctor"; 
+import ProtegerDoctor from "./Pages/utilidades/ProtegerDoctor";
+import ProtegerAdmin from "./Pages/utilidades/ProtegerAdmin";
+
+
 
 function App() {
   return (
+
     <Router>
       <div className="App">
         <header className="App-header">
@@ -24,8 +28,8 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/reservar" element={<Reservar />} />
-            <Route path="/UsuarioDoctor" element={<UsuarioDoctor />} />
-            <Route path="/UsuarioAdministrador" element={<UsuarioAdministrador />} />
+            <Route path="/UsuarioDoctor" element={<ProtegerDoctor><UsuarioDoctor /></ProtegerDoctor>} />
+            <Route path="/UsuarioAdministrador" element={<ProtegerAdmin><UsuarioAdministrador /></ProtegerAdmin>} />
           </Routes>
         </header>
       </div>
