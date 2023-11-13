@@ -14,7 +14,7 @@ function IniciarSesion() {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/api/login", {
+      const response = await fetch("http://45.236.129.38:3000/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,10 +29,10 @@ function IniciarSesion() {
         localStorage.setItem("userData", JSON.stringify(data));
   
         if (data.isDoctor === true) { 
-          navigate("/UsuarioDoctor");
+          navigate("/HomeDoc");
         } 
         else if (data.isAdmin === true) {
-          navigate("/UsuarioAdministrador");
+          navigate("/HomeAdm");
         } 
         else {
           navigate("/home");

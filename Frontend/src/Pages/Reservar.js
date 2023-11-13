@@ -15,7 +15,7 @@ const Reservar = () => {
 
   const obtenerCitasDisponibles = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/citas/disponibles');
+      const response = await axios.get('http://45.236.129.38:3000/api/citas/disponibles');
       const citas = response.data.citas;
       setCitasDisponibles(citas);
     } catch (error) {
@@ -25,7 +25,7 @@ const Reservar = () => {
 
   const reservarCita = async (citaId) => {
     try {
-      const response = await axios.post('http://localhost:3000/api/citas/reservar', {
+      const response = await axios.post('http://45.236.129.38:3000/api/citas/reservar', {
         citaId,
         pacienteId: userData.rut,
       });

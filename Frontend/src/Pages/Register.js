@@ -16,7 +16,7 @@ function Register() {
     border: "1px solid #ccc",
     padding: "20px",
     boxShadow: "0px 0px 35px -10px rgba(0,0,0,1)",
-    backgroundColor: "#00ADB5",
+    backgroundColor: "#0C6EFD",
   };
 
   const handleRegister = async (event) => {
@@ -37,7 +37,7 @@ function Register() {
         telefono,
         contrasena,
       });
-      const response = await fetch("http://localhost:3000/api/register", {
+      const response = await fetch("http://45.236.129.38:3000/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
