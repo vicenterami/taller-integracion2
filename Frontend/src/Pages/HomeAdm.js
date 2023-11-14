@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
-
 import UsuarioAdministrador from "./UsuarioAdministrador"
+import ProtegerAdmin from "./utilidades/ProtegerAdmin";
 
 function HomeAdm() {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ function HomeAdm() {
   };
       //logout
   const handleLogout = () => {
-    localStorage.removeItem( userData);
+    localStorage.removeItem("userData");
     navigate("/");
   };
 

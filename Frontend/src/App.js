@@ -12,8 +12,6 @@ import HomeDoc from "./Pages/HomeDoc";
 import Perfil from "./Pages/Perfil";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Reservar from "./Pages/Reservar";
-import UsuarioAdministrador from "./Pages/UsuarioAdministrador"; 
-import UsuarioDoctor from "./Pages/UsuarioDoctor"; 
 import ProtegerDoctor from "./Pages/utilidades/ProtegerDoctor";
 import ProtegerAdmin from "./Pages/utilidades/ProtegerAdmin";
 
@@ -30,13 +28,11 @@ function App() {
             <Route path="/registrarse" element={<Registrarse />} />
 
             <Route path="/home" element={<Home />} />
-            <Route path="/homeAdm" element={<HomeAdm />} />
-            <Route path="/homeDoc" element={<HomeDoc />} />
+            <Route path="/homeAdm" element={<ProtegerAdmin><HomeAdm /></ProtegerAdmin>} />
+            <Route path="/homeDoc" element={<ProtegerDoctor><HomeDoc /></ProtegerDoctor>} />
 
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/reservar" element={<Reservar />} />
-            <Route path="/UsuarioDoctor" element={<ProtegerDoctor><UsuarioDoctor /></ProtegerDoctor>} />
-            <Route path="/UsuarioAdministrador" element={<ProtegerAdmin><UsuarioAdministrador /></ProtegerAdmin>} />
           </Routes>
         </header>
       </div>

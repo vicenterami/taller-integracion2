@@ -21,7 +21,7 @@ function Home() {
   };
       //logout
   const handleLogout = () => {
-    localStorage.removeItem( userData);
+    localStorage.removeItem("userData");
     navigate("/");
   };
 
