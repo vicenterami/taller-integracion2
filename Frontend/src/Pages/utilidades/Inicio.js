@@ -1,4 +1,8 @@
 import React from 'react'
+import { Carousel } from "react-bootstrap";
+import img1 from "../../Images/inicio1.jpg";
+import img2 from "../../Images/inicio2.jpg";
+import img3 from "../../Images/inicio3.jpg";
 
 const Inicio = () => {
 
@@ -10,11 +14,21 @@ return (
 
     <div className="row mt-5">
       <div className="col-md-6">
-        <h2>Sobre nosotros</h2>
-        <p>Cefan es una pagina que te ayudara con tu tratamiento, llevando un seguimiento de este </p>
+        <h2 className='text-center'>Nuestros servicios</h2>
+        <Carousel>
+        <Carousel.Item >
+            <img className="d-block w-100" src={img1} alt="Imagen 1"/>
+          </Carousel.Item>
+          <Carousel.Item >
+            <img className="d-block w-100" src={img2} alt="Imagen 1"/>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img className="d-block w-100" src={img3} alt="Imagen 1"/>
+          </Carousel.Item>
+        </Carousel>
       </div>
       <div className="col-md-6">
-        <h2>Nuestros servicios</h2>
+        <h2>Sobre nosotros</h2>
         <ul>
           <li>solicitar horas</li>
           <li>consultar con su doctor</li>
@@ -23,6 +37,7 @@ return (
       </div>
     </div>
 
+    
     <div className="row mt-5">
       <div className="col-md-12">
         <h2>Contacto</h2>
