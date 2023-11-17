@@ -12,75 +12,68 @@ function Welcome() {
     textAlign: "center",
   };
   const logoStyle = {
-    width: '200',
-    heigth: '200',
+    width: '200px',
+    heigth: '200px',
   };
   const logotext = {
     display: 'flex',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    padding: '12',
-  };
-  const box = {
-    display: 'flex',
     justifyContent: 'center',
-    padding: '10',
-    margin: '5',
+    alignItems: 'center',
+    flexDirection: 'column',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
     color: 'white',
-  };
-
-  const botonbox = {
-    border: '1px solid black',
-    backgroundColor: '',
-    borderRadius: '10px',
-    padding: '10px',
-    margin: '10px',
-    textAlign: 'center',
-    boxShadow: '10px 10px 5px black',
   };
   const boton = {
     backgroundColor: '#2050e0',
     borderRadius: '10px',
     border:'none',
     color: 'white',
+    margin: '5px',
   };
-  
+  const botonPequeno ={
+    ...boton,
+    padding: '5px 10px',
+    fontSize: '0.8em',
+  };
   const carouselIMG = {
     width: '100%',
-    maxHeight: '400px'
+    height: '100vh',
+    objectFit: 'cover',
+  };
+  const overlay = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'rgba(0,0,0,0.5)',
   };
   return (
-    <div>
-      <div>
-        <Carousel>
-          <Carousel.Item style={carouselIMG}>
-            <img className="d-block w-100" src={img1} alt="Imagen 1"/>
-          </Carousel.Item>
-          <Carousel.Item style={carouselIMG}>
-            <img className="d-block w-100" src={img2} alt="Imagen 2"/>
-          </Carousel.Item>
-        </Carousel>
-        <div style={logotext}>
-            <img src={logo} alt="Logo" style={{logoStyle}}/>
-          <div>
-            <h2 style={estiloBienvenida}>Bienvenido a Cefan</h2>
-            <p style={estiloBienvenida}>Un lugar donde nos preocupamos de tu salud.</p>
-            <div style={box}>
-              <div style={botonbox}>
-                <p>¿Tienes una cuenta?</p>
-                <Link to="/IniciarSesion">
-                  <button style={boton}>Inicia Sesión</button>
-                </Link>
-              </div>
-              <div style={botonbox}>
-                <p>¿Primera vez en CeFan?</p>
-                <Link to="/registrarse">
-                  <button style={boton}>Registrate</button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
+    
+    <div style={{ position: 'relative' }}>
+      <Carousel>
+        <Carousel.Item>
+          <img style={carouselIMG} className="d-block w-100" src={img1} alt="Imagen 1"/>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img style={carouselIMG} className="d-block w-100" src={img2} alt="Imagen 2"/>
+        </Carousel.Item>
+      </Carousel>
+      <div style={overlay}></div>
+      <div style={logotext}>
+        <img src={logo} alt="Logo" style={{logoStyle}}/>
+        <h2 style={estiloBienvenida}>Bienvenido a Cefan</h2>
+        <p style={estiloBienvenida}>Un lugar donde nos preocupamos de tu salud.</p>
+        <Link to="/IniciarSesion">
+        <button style={boton}>Inicia Sesión</button>
+        </Link>
+        <p style={{...estiloBienvenida, margin:'0'}}></p>
+        <Link to="/registrarse">
+        <button style={botonPequeno}>Registrate</button>
+        </Link>
       </div>
     </div>
   );
