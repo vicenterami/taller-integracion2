@@ -70,7 +70,7 @@ function Welcome() {
         <Link to="/IniciarSesion">
         <button style={boton}>Inicia Sesión</button>
         </Link>
-        <p style={{...estiloBienvenida, margin:'0'}}></p>
+        <p style={{...estiloBienvenida, margin:'0'}}>o</p>
         <Link to="/registrarse">
         <button style={botonPequeno}>Registrate</button>
         </Link>
