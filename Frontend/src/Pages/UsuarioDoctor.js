@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+
 import { Toaster, toast } from "sonner";
 
 function UsuarioDoctor() {
   const userData = localStorage.getItem("userData");
   const data = JSON.parse(userData);
-  const [doctor, setDoctor] = useState("");
   const [especialidad, setEspecialidad] = useState("");
   const [pacienteRut, setPacienteRut] = useState("");
- 
   const [notas, setNota] = useState("");
   const [medicamentos, setMedicamentos] = useState("");
   const [fechaHora, setFechaHora] = useState(new Date().toISOString());
@@ -28,72 +27,53 @@ function UsuarioDoctor() {
   const handleSubirHora = async (event) => {
     event.preventDefault();
     const parametros = {
-      doctor: doctor,
-      
       especialidad: especialidad,
       fecha: fechaHora,
       notas: notas,
       medicamentos: medicamentos,
-      
       pacienteRut: pacienteRut,
     };
+    console.log(data.nombre);
     console.log(parametros);
     try {
       const response = await axios.post(
         "http://localhost:3000/api/subirEvolucion",
         {
-          doctor: doctor,
-          
+          doctor: data.nombre,
           especialidad: especialidad,
           fecha: fechaHora,
           notas: notas,
           medicamentos: medicamentos,
-        
           pacienteRut: pacienteRut,
         }
       );
-      //const data = await response.json();
 
       if (response.status === 201) {
-        alert("Cita registrada con éxito");
-        setDoctor("");
+        toast.success("Seguimiento registrado con éxito");
         setMedicamentos("");
         setEspecialidad("");
         setFechaHora(new Date().toISOString());
         setPacienteRut("");
         setNota("");
       } else if (response.status === 500) {
-        alert("Error al registrar cita");
+        toast.error("Error al registrar seguimiento");
       } else {
-        alert("Ocurrió un error");
+        toast.error("Ocurrió un error");
       }
     } catch (error) {
-      console.error("Error al reservar la cita:", error.message);
-      toast.error("¡Algo ha fallado a la hora de registrar la cita!");
+      console.error("Error al reservar la seguimiento:", error.message);
+      toast.error("¡Algo ha fallado a la hora de registrar la seguimiento!");
     }
   };
+
   return (
-    <>
+    <div>
       <div className="container-fluid vh-100 d-flex justify-content-center align-items-center">
         <div style={formStyle}>
           <div className="row">
             <div className="p-4 d-flex flex-column justify-content-center align-items-center">
-              <h2 className="display-4">Registrar Hora</h2>
+              <h2 className="display-4">Seguimiento</h2>
               <form onSubmit={handleSubirHora}>
-                
-              <div className="mb-2">
-                  <label htmlFor="doctor" className="form-label fs-4">
-                    doctor
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="doctor"
-                    placeholder="doctor"
-                    value={doctor}
-                    onChange={(e) => setDoctor(e.target.value)}
-                  />
-                </div>
                 <div className="mb-2">
                   <label htmlFor="especialidad" className="form-label fs-4">
                     Especialidad
@@ -130,26 +110,26 @@ function UsuarioDoctor() {
                 </div>
                 <div className="mb-2">
                   <label htmlFor="notas" className="form-label fs-4">
-                    notas
+                    Notas
                   </label>
                   <input
                     type="text"
                     className="form-control"
                     id="notas"
-                    placeholder="notas"
+                    placeholder="Notas"
                     value={notas}
                     onChange={(e) => setNota(e.target.value)}
                   />
                 </div>
                 <div className="mb-2">
                   <label htmlFor="medicamentos" className="form-label fs-4">
-                    medicamentos
+                    Medicamentos
                   </label>
                   <input
                     type="text"
                     className="form-control"
                     id="medicamentos"
-                    placeholder="medicamentos"
+                    placeholder="Medicamentos"
                     value={medicamentos}
                     onChange={(e) => setMedicamentos(e.target.value)}
                   />
@@ -170,7 +150,7 @@ function UsuarioDoctor() {
 
                 <div className="d-flex justify-content-center">
                   <button type="submit" className="btn btn-info btn-lg fs-5">
-                    Registrarse
+                    Subir Seguimiento
                   </button>
                 </div>
               </form>
@@ -178,7 +158,7 @@ function UsuarioDoctor() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
