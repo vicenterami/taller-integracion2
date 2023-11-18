@@ -10,7 +10,9 @@ function UsuarioDoctor() {
   const [doctor, setDoctor] = useState("");
   const [especialidad, setEspecialidad] = useState("");
   const [pacienteRut, setPacienteRut] = useState("");
-  const [doctorRut, setDoctorRut] = useState("");
+ 
+  const [notas, setNota] = useState("");
+  const [medicamentos, setMedicamentos] = useState("");
   const [fechaHora, setFechaHora] = useState(new Date().toISOString());
   const handleDateChange = (selectedDate) => {
     setFechaHora(selectedDate.toISOString());
@@ -27,24 +29,26 @@ function UsuarioDoctor() {
     event.preventDefault();
     const parametros = {
       doctor: doctor,
-      doctorRut: doctorRut,
+      
       especialidad: especialidad,
       fecha: fechaHora,
-      disponible: true,
-      reservada: false,
+      notas: notas,
+      medicamentos: medicamentos,
+      
       pacienteRut: pacienteRut,
     };
     console.log(parametros);
     try {
       const response = await axios.post(
-        "http://45.236.129.38:3000/api/subirHora",
+        "http://localhost:3000/api/subirEvolucion",
         {
-          doctor: data.nombre,
-          doctorRut: data.rut,
+          doctor: doctor,
+          
           especialidad: especialidad,
           fecha: fechaHora,
-          disponible: true,
-          reservada: false,
+          notas: notas,
+          medicamentos: medicamentos,
+        
           pacienteRut: pacienteRut,
         }
       );
@@ -53,10 +57,11 @@ function UsuarioDoctor() {
       if (response.status === 201) {
         alert("Cita registrada con éxito");
         setDoctor("");
-        setDoctorRut("");
+        setMedicamentos("");
         setEspecialidad("");
         setFechaHora(new Date().toISOString());
         setPacienteRut("");
+        setNota("");
       } else if (response.status === 500) {
         alert("Error al registrar cita");
       } else {
@@ -75,6 +80,20 @@ function UsuarioDoctor() {
             <div className="p-4 d-flex flex-column justify-content-center align-items-center">
               <h2 className="display-4">Registrar Hora</h2>
               <form onSubmit={handleSubirHora}>
+                
+              <div className="mb-2">
+                  <label htmlFor="doctor" className="form-label fs-4">
+                    doctor
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="doctor"
+                    placeholder="doctor"
+                    value={doctor}
+                    onChange={(e) => setDoctor(e.target.value)}
+                  />
+                </div>
                 <div className="mb-2">
                   <label htmlFor="especialidad" className="form-label fs-4">
                     Especialidad
@@ -107,6 +126,32 @@ function UsuarioDoctor() {
                     dateFormat="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" // Formato personalizado
                     timeFormat="HH:mm"
                     timeIntervals={15}
+                  />
+                </div>
+                <div className="mb-2">
+                  <label htmlFor="notas" className="form-label fs-4">
+                    notas
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="notas"
+                    placeholder="notas"
+                    value={notas}
+                    onChange={(e) => setNota(e.target.value)}
+                  />
+                </div>
+                <div className="mb-2">
+                  <label htmlFor="medicamentos" className="form-label fs-4">
+                    medicamentos
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="medicamentos"
+                    placeholder="medicamentos"
+                    value={medicamentos}
+                    onChange={(e) => setMedicamentos(e.target.value)}
                   />
                 </div>
                 <div className="mb-2">

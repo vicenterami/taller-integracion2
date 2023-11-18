@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const evolucionSchema = new mongoose.Schema({
   doctor: String,        
-  hora: String,          
-  especialista: String,
+  fecha: Date,          
+  especialidad: String,
   notas: String,  
   medicamentos: String,  
   pacienteRut: String, 
