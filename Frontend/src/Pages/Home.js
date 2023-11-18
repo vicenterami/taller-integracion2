@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
+import logo from "../Images/Logocircular.png"
+import { FaUserCircle } from "react-icons/fa";
+import { IoIosLogOut } from "react-icons/io";
 
 import Citas from "./utilidades/Citas"
 import Seguimiento from "./utilidades/Seguimiento";
@@ -24,33 +27,36 @@ function Home() {
     localStorage.removeItem("userData");
     navigate("/");
   };
-
+  const [hoveredItem, setHoveredItem] = useState(null);
 
   return (
     <div>
       <div>
         <header className="navbar navbar-dark bg-primary">
-          <h1 style={{ padding: "10px" }}>Cefan</h1>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <img src={logo} alt="Logo de Cefan" style={{ height: '60px', margin: '10px', marginLeft: '40px' }} />
+            <h1 style={{ color: 'white', margin: 0 }}>Cefan</h1>
+          </div>
 
-          <nav className="nav nav-tabs" id="nav-tab" role="tablist">
+          <nav className="nav nav-tabs" id="nav-tab" role="tablist" style={{ borderBottom: 'none' }}>
             <ul className="nav justify-content-end">
-              <li className={`nav-item ${selectedPage === 'inicio' ? 'active' : ''}`}>
-                <p onClick={() => handlePageChange('inicio')} className={`nav-link ${selectedPage === 'inicio' ? 'text-white' : 'text-black'}`}>Inicio</p>
+            <li style={hoveredItem === 'inicio' ? { backgroundColor: '#1755A6', borderRadius: '10px' } : {}} onMouseEnter={() => setHoveredItem('inicio')} onMouseLeave={() => setHoveredItem(null)}>
+                <p onClick={() => handlePageChange('inicio')} className="nav-link text-white" style={{border: 'none' }}>Inicio</p>
+            </li>
+              <li style={hoveredItem === 'Horas medicas' ? { backgroundColor: '#1755A6', borderRadius: '10px' } : {}} onMouseEnter={() => setHoveredItem('Horas medicas')} onMouseLeave={() => setHoveredItem(null)}>
+                <p onClick={() => handlePageChange('Horas medicas')} className={"nav-link text-white"} style={{border: 'none' }}>Horas Disponibles</p>
               </li>
-              <li className={`nav-item ${selectedPage === 'Horas medicas' ? 'active' : ''}`}>
-                <p onClick={() => handlePageChange('Horas medicas')} className={`nav-link ${selectedPage === 'Horas medicas' ? 'text-white' : 'text-black'}`}>Horas Disponibles</p>
+              <li style={hoveredItem === 'Mis horas' ? { backgroundColor: '#1755A6', borderRadius: '10px' } : {}} onMouseEnter={() => setHoveredItem('Mis horas')} onMouseLeave={() => setHoveredItem(null)}>
+                <p onClick={() => handlePageChange('Mis horas')} className={"nav-link text-white"} style={{border: 'none' }}>Mis Horas</p>
               </li>
-              <li className={`nav-item ${selectedPage === 'Mis horas' ? 'active' : ''}`}>
-                <p onClick={() => handlePageChange('Mis horas')} className={`nav-link ${selectedPage === 'Mis horas' ? 'text-white' : 'text-black'}`}>Mis Horas</p>
+              <li style={hoveredItem === 'Seguimiento' ? { backgroundColor: '#1755A6', borderRadius: '10px' } : {}} onMouseEnter={() => setHoveredItem('Seguimiento')} onMouseLeave={() => setHoveredItem(null)}>
+                <p onClick={() => handlePageChange('Seguimiento')} className={"nav-link text-white"} style={{border: 'none' }}>Seguimiento</p>
               </li>
-              <li className={`nav-item ${selectedPage === 'Seguimiento' ? 'active' : ''}`}>
-                <p onClick={() => handlePageChange('Seguimiento')} className={`nav-link ${selectedPage === 'Seguimiento' ? 'text-white' : 'text-black'}`}>Seguimiento</p>
+              <li className="nav-item d-flex align-items-center">
+                <FaUserCircle onClick={handleIrAPerfil} style={{ fontSize: '40px', marginRight: '20px' }}/>
               </li>
-              <li className="nav-item">
-                <button onClick={handleIrAPerfil} className="btn btn-secondary btn-lg fs-4">Ir a Perfil</button>
-              </li>
-              <li className="nav-item">
-                <button onClick={handleLogout} className="btn btn-danger btn-lg fs-4">Cerrar Sesión</button>
+              <li className="nav-item d-flex align-items-center">
+                <IoIosLogOut onClick={handleLogout} style={{ fontSize: '40px' }}/>
               </li>
             </ul>
           </nav>
