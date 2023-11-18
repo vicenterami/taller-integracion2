@@ -32,6 +32,7 @@ function Welcome() {
     border:'none',
     color: 'white',
     margin: '5px',
+    padding: '5px 10px', 
   };
   const botonPequeno ={
     ...boton,
@@ -65,14 +66,14 @@ function Welcome() {
       <div style={overlay}></div>
       <div style={logotext}>
         <img src={logo} alt="Logo" style={{logoStyle}}/>
-        <h2 style={estiloBienvenida}>Bienvenido a Cefan</h2>
+        <h2 style={{...estiloBienvenida, marginTop: '20px'}}>Bienvenido a Cefan</h2>
         <p style={estiloBienvenida}>Un lugar donde nos preocupamos de tu salud.</p>
         <Link to="/IniciarSesion">
-        <button style={boton}>Inicia Sesión</button>
+        <button style={boton}>Iniciar Sesión</button>
         </Link>
         <p style={{...estiloBienvenida, margin:'0'}}>o</p>
         <Link to="/registrarse">
-        <button style={botonPequeno}>Registrate</button>
+        <button style={botonPequeno}>Registrarse</button>
         </Link>
       </div>
     </div>
