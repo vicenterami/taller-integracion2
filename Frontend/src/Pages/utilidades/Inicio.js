@@ -1,8 +1,10 @@
 import React from 'react'
 import { Carousel } from "react-bootstrap";
-import img1 from "../../Images/inicio1.jpg";
-import img2 from "../../Images/inicio2.jpg";
-import img3 from "../../Images/inicio3.jpg";
+import logo from "../../Images/Logocircular.png";
+import img1 from "../../Images/inicio1.png";
+import img2 from "../../Images/inicio2.png";
+import img3 from "../../Images/inicio3.png";
+
 
 const Inicio = () => {
 
@@ -13,7 +15,7 @@ return (
     </header>
 
     <div className="row mt-5">
-      <div className="col-md-6">
+      <div>
         <Carousel>
         <Carousel.Item >
             <img className="d-block w-100" src={img1} alt="Imagen 1"/>
@@ -25,18 +27,16 @@ return (
             <img className="d-block w-100" src={img3} alt="Imagen 1"/>
           </Carousel.Item>
         </Carousel>
-      </div>
-      <div className="col-md-6">
-        <div className='row'>
-        <h2 className='text-center' style={{backgroundColor: '#0765FB', borderRadius: '5px'}}>Sobre nosotros</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in nulla enim. Ut erat dui, tincidunt vel varius nec, blandit nec est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu congue velit. Praesent sit amet lobortis neque, et laoreet dolor. Quisque accumsan porta dui mattis imperdiet. Quisque dapibus hendrerit purus, in consequat urna fringilla id. Pellentesque vehicula metus enim, in lacinia risus porttitor viverra.</p>
-        </div>
+      </div> 
+    </div> 
 
-        
-      </div>
-    </div>
-
-    
+    <div>
+        <footer className="footer mt-5 py-3 bg-dark text-white text-center">
+          <img src={logo} alt="Logo" style={{ width: '100px' }} />
+          <p className="mb-0">Cefan© 2023</p>
+          <p className="mb-0">Email: cefan@consultas.cfn.cl | Teléfono: +123-456-7890</p>
+        </footer>
+      </div>  
   </div>
 );
 }
