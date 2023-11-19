@@ -48,7 +48,7 @@ function HomeDoc() {
                 <FaUserCircle onClick={handleIrAPerfil} style={{ fontSize: '40px', marginRight: '20px' }}/>
               </li>
               <li className="nav-item d-flex align-items-center">
-                <IoIosLogOut onClick={handleLogout} style={{ fontSize: '40px' }}/>
+                <IoIosLogOut onClick={handleLogout} style={{ fontSize: '40px',  marginRight: '20px' }}/>
               </li>
             </ul>
           </nav>
