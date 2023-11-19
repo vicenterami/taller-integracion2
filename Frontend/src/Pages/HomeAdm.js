@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
-import UsuarioAdministrador from "./UsuarioAdministrador"
+import logo from "../Images/Logocircular.png"
+import { FaUserCircle } from "react-icons/fa";
+import { IoIosLogOut } from "react-icons/io";
+
+import UsuarioAdministrador from "./utilidades/Crearhoras"
 import ProtegerAdmin from "./utilidades/ProtegerAdmin";
+
+import Crearhoras from "./utilidades/Crearhoras";
+import Listadoc from "./utilidades/Listadoc";
+import Creardoc from "./utilidades/Creardoctor";
 
 function HomeAdm() {
   const navigate = useNavigate();
@@ -21,30 +29,32 @@ function HomeAdm() {
     localStorage.removeItem("userData");
     navigate("/");
   };
-
+  const [hoveredItem, setHoveredItem] = useState(null);
 
   return (
     <div>
       <div>
         <header className="navbar navbar-dark bg-primary">
-          <h1 style={{ padding: "10px" }}>Cefan</h1>
-
-          <nav className="nav nav-tabs" id="nav-tab" role="tablist">
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <img src={logo} alt="Logo de Cefan" style={{ height: '60px', margin: '10px', marginLeft: '40px' }} />
+            <h1 style={{ color: 'white', margin: 0 }}>Cefan</h1>
+          </div>
+          <nav className="nav nav-tabs" id="nav-tab" role="tablist" style={{ borderBottom: 'none' }}>
             <ul className="nav justify-content-end">
-              <li className={`nav-item ${selectedPage === 'Adm' ? 'active' : ''}`}>
-                <p onClick={() => handlePageChange('Adm')} className={`nav-link ${selectedPage === 'Adm' ? 'text-white' : 'text-black'}`}>Adm</p>
+            <li style={hoveredItem === 'Crear Doctor' ? { backgroundColor: '#1755A6', borderRadius: '10px' } : {}} onMouseEnter={() => setHoveredItem('Crear Doctor')} onMouseLeave={() => setHoveredItem(null)}>
+                <p onClick={() => handlePageChange('Crear Doctor')} className="nav-link text-white" style={{border: 'none' }}>Crear Doctor</p>
+            </li>
+              <li style={hoveredItem === 'Doctores' ? { backgroundColor: '#1755A6', borderRadius: '10px' } : {}} onMouseEnter={() => setHoveredItem('Doctores')} onMouseLeave={() => setHoveredItem(null)}>
+                <p onClick={() => handlePageChange('Doctores')} className={"nav-link text-white"} style={{border: 'none' }}>Doctores</p>
               </li>
-              <li className={`nav-item ${selectedPage === 'doctores' ? 'active' : ''}`}>
-                <p onClick={() => handlePageChange('doctores')} className={`nav-link ${selectedPage === 'doctores' ? 'text-white' : 'text-black'}`}>doctores</p>
+              <li style={hoveredItem === 'Horas' ? { backgroundColor: '#1755A6', borderRadius: '10px' } : {}} onMouseEnter={() => setHoveredItem('Horas')} onMouseLeave={() => setHoveredItem(null)}>
+                <p onClick={() => handlePageChange('Horas')} className={"nav-link text-white"} style={{border: 'none' }}>Crear Horas</p>
               </li>
-              <li className={`nav-item ${selectedPage === 'Crear horas' ? 'active' : ''}`}>
-                <p onClick={() => handlePageChange('Crear horas')} className={`nav-link ${selectedPage === 'Crear horas' ? 'text-white' : 'text-black'}`}>Crear horas</p>
+              <li className="nav-item d-flex align-items-center">
+                <FaUserCircle onClick={handleIrAPerfil} style={{ fontSize: '40px', marginRight: '20px' }}/>
               </li>
-              <li className="nav-item">
-                <button onClick={handleIrAPerfil} className="btn btn-secondary btn-lg fs-4">Ir a Perfil</button>
-              </li>
-              <li className="nav-item">
-                <button onClick={handleLogout} className="btn btn-danger btn-lg fs-4">Cerrar Sesión</button>
+              <li className="nav-item d-flex align-items-center">
+                <IoIosLogOut onClick={handleLogout} style={{ fontSize: '40px' }}/>
               </li>
             </ul>
           </nav>
@@ -53,10 +63,9 @@ function HomeAdm() {
 
       <div class="tab-content" id="nav-tabContent" style={{ margin: "20px", fontSize: "80%" }}>
         {/* Mostrar contenido según la página seleccionada */}
-        {selectedPage === 'Adm' && <div></div>}
-        {selectedPage === 'doctores' && <div></div>}
-        {selectedPage === 'Crear horas' && <div><UsuarioAdministrador/></div>}
-        {selectedPage === 'Seguimientos' && <div></div>}
+        {selectedPage === 'Crear Doctor' && <div><Creardoc/></div>}
+        {selectedPage === 'Doctores' && <div><Listadoc/></div>}
+        {selectedPage === 'Horas' && <div> <Crearhoras/></div>}
       
       </div>
     </div>

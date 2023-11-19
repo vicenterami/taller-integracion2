@@ -37,7 +37,6 @@ function Home() {
             <img src={logo} alt="Logo de Cefan" style={{ height: '60px', margin: '10px', marginLeft: '40px' }} />
             <h1 style={{ color: 'white', margin: 0 }}>Cefan</h1>
           </div>
-
           <nav className="nav nav-tabs" id="nav-tab" role="tablist" style={{ borderBottom: 'none' }}>
             <ul className="nav justify-content-end">
             <li style={hoveredItem === 'inicio' ? { backgroundColor: '#1755A6', borderRadius: '10px' } : {}} onMouseEnter={() => setHoveredItem('inicio')} onMouseLeave={() => setHoveredItem(null)}>

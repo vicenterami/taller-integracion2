@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
-import logo from "../Images/logo.png";
-import ArrowComponent from "./utilidades/BackArrow";
+import logo from "../../Images/logo.png"
+import ArrowComponent from "./BackArrow";
 // agregar el datepicker para fecha y hora(un nuevo componente q se instala
 // con npm install react-datepicker )
 import DatePicker from "react-datepicker";
@@ -10,7 +10,7 @@ import axios from "axios";
 import { Toaster, toast } from 'sonner'
 
   
-function UsuarioAdministrador() {
+function Crearhoras() {
   const [doctor, setDoctor] = useState("");
   const [especialidad, setEspecialidad] = useState("");
   //disponibilidad
@@ -209,4 +209,4 @@ function UsuarioAdministrador() {
   );
 }
 
-export default UsuarioAdministrador;
+export default Crearhoras;

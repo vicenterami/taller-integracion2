@@ -236,7 +236,15 @@ router.get('/userData/:rutt', async (req, res) => {
   }
 });
 
-
+router.get('/usuarios/doctores', async (req, res) => {
+  try {
+    const doctores = await User.find({ rol: 'doctor' });
+    res.status(200).json({ doctores });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error al obtener la lista de doctores' });
+  }
+});
 
 
 module.exports = router;

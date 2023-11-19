@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
-import UsuarioDoctor from "./UsuarioDoctor";
+import logo from "../Images/Logocircular.png"
+import { FaUserCircle } from "react-icons/fa";
+import { IoIosLogOut } from "react-icons/io";
+
+import UsuarioDoctor from "./utilidades/Evolucionmed";
+import Crearhoras from "./utilidades/Crearhoras";
 
 function HomeDoc() {
   const navigate = useNavigate();
@@ -19,86 +24,31 @@ function HomeDoc() {
     localStorage.removeItem(userData);
     navigate("/");
   };
-
+  const [hoveredItem, setHoveredItem] = useState(null);
   return (
     <div>
       <div>
-        <header className="navbar navbar-dark bg-primary">
-          <h1 style={{ padding: "10px" }}>Cefan</h1>
-
-          <nav className="nav nav-tabs" id="nav-tab" role="tablist">
+      <header className="navbar navbar-dark bg-primary">
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <img src={logo} alt="Logo de Cefan" style={{ height: '60px', margin: '10px', marginLeft: '40px' }} />
+            <h1 style={{ color: 'white', margin: 0 }}>Cefan</h1>
+          </div>
+          <nav className="nav nav-tabs" id="nav-tab" role="tablist" style={{ borderBottom: 'none' }}>
             <ul className="nav justify-content-end">
-              <li
-                className={`nav-item ${
-                  selectedPage === "Doctor" ? "active" : ""
-                }`}
-              >
-                <p
-                  onClick={() => handlePageChange("Doctor")}
-                  className={`nav-link ${
-                    selectedPage === "Doctor" ? "text-white" : "text-black"
-                  }`}
-                >
-                  Doctor
-                </p>
+            <li style={hoveredItem === 'seguimiento' ? { backgroundColor: '#1755A6', borderRadius: '10px' } : {}} onMouseEnter={() => setHoveredItem('seguimiento')} onMouseLeave={() => setHoveredItem(null)}>
+                <p onClick={() => handlePageChange('seguimiento')} className="nav-link text-white" style={{border: 'none' }}>seguimiento</p>
+            </li>
+              <li style={hoveredItem === 'Crear horas' ? { backgroundColor: '#1755A6', borderRadius: '10px' } : {}} onMouseEnter={() => setHoveredItem('Crear horas')} onMouseLeave={() => setHoveredItem(null)}>
+                <p onClick={() => handlePageChange('Crear horas')} className={"nav-link text-white"} style={{border: 'none' }}>Crear hora</p>
               </li>
-              <li
-                className={`nav-item ${
-                  selectedPage === "Horario" ? "active" : ""
-                }`}
-              >
-                <p
-                  onClick={() => handlePageChange("Horario")}
-                  className={`nav-link ${
-                    selectedPage === "Horario" ? "text-white" : "text-black"
-                  }`}
-                >
-                  Horario
-                </p>
+              <li style={hoveredItem === 'Pacientes' ? { backgroundColor: '#1755A6', borderRadius: '10px' } : {}} onMouseEnter={() => setHoveredItem('Pacientes')} onMouseLeave={() => setHoveredItem(null)}>
+                <p onClick={() => handlePageChange('Pacientes')} className={"nav-link text-white"} style={{border: 'none' }}>Pacientes</p>
               </li>
-              <li
-                className={`nav-item ${
-                  selectedPage === "Crear horas" ? "active" : ""
-                }`}
-              >
-                <p
-                  onClick={() => handlePageChange("Crear horas")}
-                  className={`nav-link ${
-                    selectedPage === "Crear horas" ? "text-white" : "text-black"
-                  }`}
-                >
-                  Crear horas
-                </p>
+              <li className="nav-item d-flex align-items-center">
+                <FaUserCircle onClick={handleIrAPerfil} style={{ fontSize: '40px', marginRight: '20px' }}/>
               </li>
-              <li
-                className={`nav-item ${
-                  selectedPage === "Pacientes" ? "active" : ""
-                }`}
-              >
-                <p
-                  onClick={() => handlePageChange("Pacientes")}
-                  className={`nav-link ${
-                    selectedPage === "Pacientes" ? "text-white" : "text-black"
-                  }`}
-                >
-                  Pacientes
-                </p>
-              </li>
-              <li className="nav-item">
-                <button
-                  onClick={handleIrAPerfil}
-                  className="btn btn-secondary btn-lg fs-4"
-                >
-                  Ir a Perfil
-                </button>
-              </li>
-              <li className="nav-item">
-                <button
-                  onClick={handleLogout}
-                  className="btn btn-danger btn-lg fs-4"
-                >
-                  Cerrar Sesión
-                </button>
+              <li className="nav-item d-flex align-items-center">
+                <IoIosLogOut onClick={handleLogout} style={{ fontSize: '40px' }}/>
               </li>
             </ul>
           </nav>
@@ -107,13 +57,8 @@ function HomeDoc() {
 
       <div class="tab-content" id="nav-tabContent" style={{ fontSize: "80%" }}>
         {/* Mostrar contenido según la página seleccionada */}
-        {selectedPage === "Doctor" && (
-          <div>
-            <UsuarioDoctor />
-          </div>
-        )}
-        {selectedPage === "Horario" && <div></div>}
-        {selectedPage === "Crear horas" && <div></div>}
+        {selectedPage === "seguimiento" && (<div><UsuarioDoctor /></div>)}
+        {selectedPage === "Crear horas" && <div> <Crearhoras/></div>}
         {selectedPage === "Pacientes" && <div></div>}
       </div>
     </div>

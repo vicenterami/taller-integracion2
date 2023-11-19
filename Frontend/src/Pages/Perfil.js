@@ -33,7 +33,15 @@ function Perfil() {
               <div className="row g-0 ">
                 <div className="col-md-5 gradient-custom text-center "
                   style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem',  backgroundColor:'#007BFF' }}>
-                  <div className='m-1' style={{width:'20%'}}> <ArrowComponent to="/Home"/></div>
+                  <div className='m-1' style={{ width: '20%' }}>
+                  {data.isAdmin === true ? (
+                    <ArrowComponent to="/HomeAdm" />
+                  ) : data.isDoctor === true ? (
+                    <ArrowComponent to="/HomeDoc" />
+                  ) : (
+                    <ArrowComponent to="/home" />
+                  )}
+                  </div>
                   <img src={logo} style={{ width: '180px', marginTop: '25px', borderRadius: '.5rem' }} alt="Logo" />
 
                   <h5 className="card-title" style={{ color: 'black', marginTop: '20px', fontSize: '1.5rem' }}>{data.nombre}</h5>
