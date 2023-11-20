@@ -41,13 +41,6 @@ function UsuarioDoctor() {
 
   const handleSubirHora = async (event) => {
     event.preventDefault();
-    const parametros = {
-      especialidad: especialidad,
-      fecha: fechaHora,
-      notas: notas,
-      medicamentos: medicamentos,
-      pacienteRut: pacienteRut,
-    };
     try {
       const response = await axios.post(
         "http://localhost:3000/api/subirEvolucion",
