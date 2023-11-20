@@ -120,14 +120,18 @@ router.post('/listaPacientes', async (req, res) => {
           // Realizar consulta adicional para obtener información del paciente
           const usuarioDelPaciente = await User.findOne({ rut: paciente.pacienteRut });
 
-          // Devolver una estructura que incluye el paciente y su información adicional
-          return {
-            paciente,
-            info: usuarioDelPaciente,
-          };
+          // Devolver una estructura que incluye el paciente y su información adicional solo si info no es null
+          if(usuarioDelPaciente !== null) {
+            return {
+              paciente,
+              info: usuarioDelPaciente,
+            };
+          }
         })
       );
-      res.status(200).json({ pacientes : pacientesConInformacionAdicional});
+      // Filtrar los elementos donde info no es null
+      const pacientesValidos = pacientesConInformacionAdicional.filter((paciente) => paciente !== undefined);
+      res.status(200).json({ pacientes: pacientesValidos });
     }else{
       res.status(404).json({ message: 'No hay pacientes asociados a este doctor' });
     }

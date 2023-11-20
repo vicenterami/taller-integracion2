@@ -5,7 +5,7 @@ import logo from "../Images/Logocircular.png"
 import { FaUserCircle } from "react-icons/fa";
 import { IoIosLogOut } from "react-icons/io";
 
-import UsuarioDoctor from "./utilidades/Evolucionmed";
+import EvolucionMed from "./utilidades/Evolucionmed";
 import Crearhoras from "./utilidades/Crearhoras";
 import ListaPacientes from "./utilidades/Listapac";
 
@@ -37,7 +37,7 @@ function HomeDoc() {
           <nav className="nav nav-tabs" id="nav-tab" role="tablist" style={{ borderBottom: 'none' }}>
             <ul className="nav justify-content-end">
             <li style={hoveredItem === 'seguimiento' ? { backgroundColor: '#1755A6', borderRadius: '10px' } : {}} onMouseEnter={() => setHoveredItem('seguimiento')} onMouseLeave={() => setHoveredItem(null)}>
-                <p onClick={() => handlePageChange('seguimiento')} className="nav-link text-white" style={{border: 'none' }}>seguimiento</p>
+                <p onClick={() => handlePageChange('seguimiento')} className="nav-link text-white" style={{border: 'none' }}>Seguimiento</p>
             </li>
               <li style={hoveredItem === 'Crear horas' ? { backgroundColor: '#1755A6', borderRadius: '10px' } : {}} onMouseEnter={() => setHoveredItem('Crear horas')} onMouseLeave={() => setHoveredItem(null)}>
                 <p onClick={() => handlePageChange('Crear horas')} className={"nav-link text-white"} style={{border: 'none' }}>Crear hora</p>
@@ -58,7 +58,7 @@ function HomeDoc() {
 
       <div className="tab-content" id="nav-tabContent" style={{ fontSize: "80%" }}>
         {/* Mostrar contenido según la página seleccionada */}
-        {selectedPage === "seguimiento" && (<div><UsuarioDoctor /></div>)}
+        {selectedPage === "seguimiento" && (<div><EvolucionMed /></div>)}
         {selectedPage === "Crear horas" && <div> <Crearhoras/></div>}
         {selectedPage === "Pacientes" && <div><ListaPacientes/></div>}
       </div>

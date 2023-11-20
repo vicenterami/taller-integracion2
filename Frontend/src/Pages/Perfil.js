@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useAuth } from '../AuthContext'; 
 import logo from '../Images/logo.png'; 
 import ArrowComponent from './utilidades/BackArrow';
 
 function Perfil() {
-  const { userData } = useAuth();
+  const user = localStorage.getItem("userData");
+  const userData = JSON.parse(user);
   const [data, setData] = useState("");
 
   useEffect(() => {

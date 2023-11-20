@@ -12,8 +12,23 @@ import { Toaster, toast } from 'sonner'
   
 function Crearhoras() {
   const [doctor, setDoctor] = useState("");
+  const opcionesEspecialidades = [
+    'Odontología',
+    'Cardiología',
+    'Pediatría',
+    'Ginecología',
+    'Neurología',
+    'Oftalmología',
+  ];
+
   const [especialidad, setEspecialidad] = useState("");
-  //disponibilidad
+  const handleSeleccion = (event) => {
+    // Obtener las opciones seleccionadas
+    const opcionSeleccionada = event.target.value;    
+    // Actualizar el estado con las opciones seleccionadas
+    setEspecialidad(opcionSeleccionada);
+  };
+
   const [disponible, setDisponible] = useState(null);
   const handleOptionChange = (opcion) => {
     if(disponible !== opcion) {
@@ -39,24 +54,7 @@ function Crearhoras() {
 
   const handleSubirHora = async (event) => {
     event.preventDefault();
-    const parametros = {
-      'doctor': doctor,
-      'doctorRut':doctorRut,
-      'especialidad': especialidad,
-      'fecha': fechaHora,
-      'disponible': disponible,
-      'reservada': !disponible,
-      'pacienteRut': pacienteRut,
-    };
-    console.log(parametros);
     try {
-      // await Validations.validate({
-      //   nombre,
-      //   rut,
-      //   correo,
-      //   telefono,
-      //   contrasena,
-      // });
       const response = await axios.post("http://45.236.129.38:3000/api/subirHora", {
         'doctor': doctor,
         'doctorRut':doctorRut,
@@ -69,17 +67,17 @@ function Crearhoras() {
       //const data = await response.json();
 
       if (response.status === 201) {
-        alert("Cita registrada con éxito");
+        toast.success("Cita registrada con éxito");
         setDoctor('');
         setDoctorRut('');
-        setEspecialidad('');
+        setEspecialidad("");
         setFechaHora(new Date().toISOString());
         setDisponible(null);
         setPacienteRut('');
       } else if (response.status === 500) {
-        alert('Error al registrar cita');
+        toast.error('Error al registrar cita');
       } else {
-        alert('Ocurrió un error');
+        toast.error('Ocurrió un error');
       }
     } catch (error) {
       console.error('Error al reservar la cita:', error.message);
@@ -122,19 +120,27 @@ function Crearhoras() {
                   </div>
                
                
-                <div className="mb-2"> 
-                  <label htmlFor="especialidad" className="form-label fs-4">
-                    Especialidad
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="especialidad"
-                    placeholder="Odontología"
-                    value={especialidad}
-                    onChange={(e) => setEspecialidad(e.target.value)}
-                  />
-                </div>
+                  <div className="mb-2">
+                    <label htmlFor="especialidades" className="form-label fs-4">
+                      Especialidades
+                    </label>
+                    <select
+                      id="especialidad"
+                      className="form-control"
+                      value={especialidad}
+                      onChange={handleSeleccion}
+                    >
+                      <option value="" disabled>
+                        Seleccionar especialidad
+                      </option>
+                      {opcionesEspecialidades.map((opcion) => (
+                        <option key={opcion} value={opcion.toString()}>
+                          {opcion}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
                 <div className="mb-2"> 
                   <label htmlFor="fecha" className="form-label fs-4">
                     Fecha y Hora

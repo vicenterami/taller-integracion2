@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
 import logo from "../Images/Logocircular.png"
 import { FaUserCircle } from "react-icons/fa";
@@ -12,7 +11,6 @@ import MisHoras from "./utilidades/Mishoras";
 
 function Home() {
   const navigate = useNavigate();
-  const { userData } = useAuth();
   const [selectedPage, setSelectedPage] = useState('inicio');
 
   const handlePageChange = (page) => {

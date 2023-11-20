@@ -8,7 +8,22 @@ import { Toaster, toast } from "sonner";
 function UsuarioDoctor() {
   const userData = localStorage.getItem("userData");
   const data = JSON.parse(userData);
+  const opcionesEspecialidades = [
+    'Odontología',
+    'Cardiología',
+    'Pediatría',
+    'Ginecología',
+    'Neurología',
+    'Oftalmología',
+  ];
+
   const [especialidad, setEspecialidad] = useState("");
+  const handleSeleccion = (event) => {
+    // Obtener las opciones seleccionadas
+    const opcionSeleccionada = event.target.value;    
+    // Actualizar el estado con las opciones seleccionadas
+    setEspecialidad(opcionSeleccionada);
+  };
   const [pacienteRut, setPacienteRut] = useState("");
   const [notas, setNota] = useState("");
   const [medicamentos, setMedicamentos] = useState("");
@@ -33,8 +48,6 @@ function UsuarioDoctor() {
       medicamentos: medicamentos,
       pacienteRut: pacienteRut,
     };
-    console.log(data.nombre);
-    console.log(parametros);
     try {
       const response = await axios.post(
         "http://localhost:3000/api/subirEvolucion",
@@ -75,18 +88,25 @@ function UsuarioDoctor() {
               <h2 className="display-4">Seguimiento</h2>
               <form onSubmit={handleSubirHora}>
                 <div className="mb-2">
-                  <label htmlFor="especialidad" className="form-label fs-4">
-                    Especialidad
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="especialidad"
-                    placeholder="Odontología"
-                    value={especialidad}
-                    onChange={(e) => setEspecialidad(e.target.value)}
-                  />
-                </div>
+                    <label htmlFor="especialidades" className="form-label fs-4">
+                      Especialidades
+                    </label>
+                    <select
+                      id="especialidad"
+                      className="form-control"
+                      value={especialidad}
+                      onChange={handleSeleccion}
+                    >
+                      <option value="" disabled>
+                        Seleccionar especialidad
+                      </option>
+                      {opcionesEspecialidades.map((opcion) => (
+                        <option key={opcion} value={opcion.toString()}>
+                          {opcion}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 <div className="mb-2">
                   <label htmlFor="fecha" className="form-label fs-4">
                     Fecha y Hora

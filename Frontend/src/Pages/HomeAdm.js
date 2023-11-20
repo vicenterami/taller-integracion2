@@ -56,7 +56,7 @@ function HomeAdm() {
         </header>
       </div>
 
-      <div class="tab-content" id="nav-tabContent" style={{ margin: "20px", fontSize: "80%" }}>
+      <div className="tab-content" id="nav-tabContent" style={{ margin: "20px", fontSize: "80%" }}>
         {/* Mostrar contenido según la página seleccionada */}
         {selectedPage === 'Crear Doctor' && <div><Creardoc/></div>}
         {selectedPage === 'Doctores' && <div><Listadoc/></div>}

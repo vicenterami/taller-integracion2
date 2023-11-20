@@ -49,7 +49,7 @@ const ListaPacientes = () => {
             </thead>
             <tbody>
               {pacientes.map((paciente, index) => (
-                <tr key={paciente.info._id}>
+                <tr key={index}>
                   <th scope='row'>{index + 1}</th>
                   <td>{paciente.info.nombre}</td>
                   <td>{paciente.info.correo}</td>
