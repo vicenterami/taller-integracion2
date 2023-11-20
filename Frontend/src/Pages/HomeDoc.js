@@ -7,6 +7,7 @@ import { IoIosLogOut } from "react-icons/io";
 
 import UsuarioDoctor from "./utilidades/Evolucionmed";
 import Crearhoras from "./utilidades/Crearhoras";
+import ListaPacientes from "./utilidades/Listapac";
 
 function HomeDoc() {
   const navigate = useNavigate();
@@ -55,11 +56,11 @@ function HomeDoc() {
         </header>
       </div>
 
-      <div class="tab-content" id="nav-tabContent" style={{ fontSize: "80%" }}>
+      <div className="tab-content" id="nav-tabContent" style={{ fontSize: "80%" }}>
         {/* Mostrar contenido según la página seleccionada */}
         {selectedPage === "seguimiento" && (<div><UsuarioDoctor /></div>)}
         {selectedPage === "Crear horas" && <div> <Crearhoras/></div>}
-        {selectedPage === "Pacientes" && <div></div>}
+        {selectedPage === "Pacientes" && <div><ListaPacientes/></div>}
       </div>
     </div>
   );

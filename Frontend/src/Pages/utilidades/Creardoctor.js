@@ -11,7 +11,6 @@ function Creardoc() {
   const [correo, setCorreo] = useState("");
   const [telefono, setFono] = useState("");
   const [contrasena, setPassword] = useState("");
-  const [rol, setRol] = useState("");
 
   const formStyle = {
     border: "1px solid #ccc",

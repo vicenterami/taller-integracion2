@@ -34,9 +34,9 @@ function Perfil() {
                 <div className="col-md-5 gradient-custom text-center "
                   style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem',  backgroundColor:'#007BFF' }}>
                   <div className='m-1' style={{ width: '20%' }}>
-                  {data.isAdmin === true ? (
+                  {userData && userData.isAdmin ? (
                     <ArrowComponent to="/HomeAdm" />
-                  ) : data.isDoctor === true ? (
+                  ) : userData && userData.isDoctor ? (
                     <ArrowComponent to="/HomeDoc" />
                   ) : (
                     <ArrowComponent to="/home" />

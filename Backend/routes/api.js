@@ -109,6 +109,35 @@ module.exports = router;
 
 
 
+router.post('/listaPacientes', async (req, res) => {
+  try {
+    const {rut} = req.body;
+    const pacientes = await Cita.find({ doctorRut: rut });
+    if(pacientes){
+      // Realizar consultas adicionales para cada paciente
+      const pacientesConInformacionAdicional = await Promise.all(
+        pacientes.map(async (paciente) => {
+          // Realizar consulta adicional para obtener información del paciente
+          const usuarioDelPaciente = await User.findOne({ rut: paciente.pacienteRut });
+
+          // Devolver una estructura que incluye el paciente y su información adicional
+          return {
+            paciente,
+            info: usuarioDelPaciente,
+          };
+        })
+      );
+      res.status(200).json({ pacientes : pacientesConInformacionAdicional});
+    }else{
+      res.status(404).json({ message: 'No hay pacientes asociados a este doctor' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error al obtener pacientes asociados al doctor' });
+  }
+});
+
+
 router.get('/User/:rut', async (req, res) => {
   try {
     const rut = req.params.rut;

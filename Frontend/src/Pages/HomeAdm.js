@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
 import logo from "../Images/Logocircular.png"
 import { FaUserCircle } from "react-icons/fa";
 import { IoIosLogOut } from "react-icons/io";
-
-import UsuarioAdministrador from "./utilidades/Crearhoras"
-import ProtegerAdmin from "./utilidades/ProtegerAdmin";
 
 import Crearhoras from "./utilidades/Crearhoras";
 import Listadoc from "./utilidades/Listadoc";
@@ -14,7 +10,6 @@ import Creardoc from "./utilidades/Creardoctor";
 
 function HomeAdm() {
   const navigate = useNavigate();
-  const { userData } = useAuth();
   const [selectedPage, setSelectedPage] = useState('Adm');
 
   const handlePageChange = (page) => {
