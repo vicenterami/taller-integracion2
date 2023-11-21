@@ -21,7 +21,7 @@ function Home() {
     navigate("/perfil");
   };
   useEffect(() => {
-    const sessionToken = localStorage.getItem("sessionToken");
+    const sessionToken = localStorage.getItem("userData");
 
     if (!sessionToken) {
       // Redirigir al usuario a la página de inicio de sesión si no hay sesión
