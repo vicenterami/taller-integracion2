@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
 import logo from "../Images/Logocircular.png"
 import { FaUserCircle } from "react-icons/fa";
@@ -11,7 +10,6 @@ import ListaPacientes from "./utilidades/Listapac";
 
 function HomeDoc() {
   const navigate = useNavigate();
-  const { userData } = useAuth();
   const [selectedPage, setSelectedPage] = useState("Doctor");
 
   const handlePageChange = (page) => {

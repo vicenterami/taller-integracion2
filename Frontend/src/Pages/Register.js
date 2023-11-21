@@ -4,6 +4,7 @@ import logo from "../Images/logo.png";
 import * as yup from 'yup';
 import { Validations } from '../ValidaciónDatos/DataValidation';
 import ArrowComponent from "./utilidades/BackArrow";
+import { Toaster, toast } from "sonner";
 
 function Register() {
   const [nombre, setNombre] = useState("");
@@ -47,16 +48,21 @@ function Register() {
       //const data = await response.json();
 
       if (response.status === 201) {
-        alert("Usuario registrado exitosamente");
+        toast.success("Usuario registrado exitosamente");
+        setNombre("");
+        setRut("");
+        setCorreo("");
+        setFono("");
+        setPassword("");
         // Redirige a la página de inicio de sesión u otra página según tus necesidades.
       } else if (response.status === 401) {
-        alert('El RUT ya está registrado');
+        toast.error("El RUT ya está registrado");
       } else {
-        alert('Ocurrió un error');
+        toast.error("Ocurrió un error");
       }
     } catch (error) {
       if (error instanceof yup.ValidationError) {
-        alert(error.message);
+        toast.error(error.message);
       } else {
         console.error("Error al registrar usuario:", error);
       }
@@ -110,6 +116,13 @@ function Register() {
                   <label htmlFor="correo" className="form-label fs-4">
                     Correo electrónico
                   </label>
+                  <Toaster
+                    richColors
+                    position="top-center"
+                    toastOptions={{
+                      style: { width: "100%", height: "auto" },
+                    }}
+                  />
                   <input
                     type="email"
                     className="form-control"
