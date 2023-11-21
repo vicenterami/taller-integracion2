@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../Images/Logocircular.png"
 import { FaUserCircle } from "react-icons/fa";
@@ -20,6 +20,14 @@ function Home() {
     // Cambia la ruta a "/perfil" cuando se hace clic en el botón
     navigate("/perfil");
   };
+  useEffect(() => {
+    const sessionToken = localStorage.getItem("sessionToken");
+
+    if (!sessionToken) {
+      // Redirigir al usuario a la página de inicio de sesión si no hay sesión
+      navigate("/");
+    }
+  }, [navigate]);
       //logout
   const handleLogout = () => {
     localStorage.removeItem("userData");
