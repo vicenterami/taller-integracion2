@@ -22,7 +22,7 @@ function HomeDoc() {
   };
   //logout
   const handleLogout = () => {
-    localStorage.removeItem(userData);
+    localStorage.removeItem("userData");
     navigate("/");
   };
   const [hoveredItem, setHoveredItem] = useState(null);
