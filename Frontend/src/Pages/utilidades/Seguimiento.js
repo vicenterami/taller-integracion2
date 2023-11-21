@@ -18,15 +18,6 @@ const Seguimiento = () => {
                     setMensaje(data.message)
                   }
 
-                //   console.log("data")
-                //   console.log(data)
-
-                //   console.log("mensaje")
-                //   console.log(mensaje)
-
-                //   console.log("evol")
-                //   console.log(evol)
-
               } else {
                   console.error("Error");
               }
