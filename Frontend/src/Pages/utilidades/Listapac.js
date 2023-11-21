@@ -9,7 +9,7 @@ const ListaPacientes = () => {
     useEffect(() => {
       const obtenerPacientes = async () => {
         try {
-          const response = await axios.post('http://localhost:3000/api/listaPacientes',
+          const response = await axios.post('http://45.236.129.38:3000/api/listaPacientes',
           {rut: userData.rut,});
 
           if (response.status === 200) {

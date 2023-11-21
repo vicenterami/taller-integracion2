@@ -43,7 +43,7 @@ function UsuarioDoctor() {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/subirEvolucion",
+        "http://45.236.129.38:3000/api/subirEvolucion",
         {
           doctor: data.nombre,
           especialidad: especialidad,
